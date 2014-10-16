@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using PMI31CourseProject;
 using ProgramingDeptMVC.Models;
 
 namespace ProgramingDeptMVC.Controllers
@@ -12,7 +13,7 @@ namespace ProgramingDeptMVC.Controllers
     {
         //
         // GET: /Home/
-
+        Course_ProjectEntities db = new Course_ProjectEntities();
         public ActionResult Index()
         {
             @ViewBag.Title = "Головна";
@@ -22,7 +23,7 @@ namespace ProgramingDeptMVC.Controllers
         public string Index(LoginAction resultOfLoginAction)
         {
             string message = string.Empty;
-            switch (resultOfLoginAction.AuthenticationCheck())
+            switch (resultOfLoginAction.AuthenticationCheck(db))
             {
                 case AuthenticationStatus.Graduate:
                     message = "Вітаємо! Ви увійшли як випускник.";
