@@ -16,14 +16,14 @@ namespace PMI31CourseProject
     public partial class Course_ProjectEntities : DbContext
     {
         public Course_ProjectEntities()
-            : base("name=Course_ProjectEntities")
+            : base("Course_ProjectEntities")
         {
         }
     
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    throw new UnintentionalCodeFirstException();
+        //}
     
         public DbSet<Administrator> Administrators { get; set; }
         public DbSet<Graduate> Graduates { get; set; }
