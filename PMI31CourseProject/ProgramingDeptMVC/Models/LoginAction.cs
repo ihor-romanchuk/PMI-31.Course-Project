@@ -24,9 +24,8 @@ namespace ProgramingDeptMVC.Models
             password = pswrd;
         }
 
-        public AuthenticationStatus AuthenticationCheck()
+        public AuthenticationStatus AuthenticationCheck(Course_ProjectEntities entities)
         {
-            Course_ProjectEntities entities = new Course_ProjectEntities();
             Repository<Graduate> graduates = new Repository<Graduate>(entities);
             Repository<Lecturer> lecturers = new Repository<Lecturer>(entities);
             Repository<Administrator> admins = new Repository<Administrator>(entities);
