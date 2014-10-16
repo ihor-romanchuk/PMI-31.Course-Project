@@ -64,7 +64,6 @@
     <Compile Include="Administrator.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="Graduate.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
