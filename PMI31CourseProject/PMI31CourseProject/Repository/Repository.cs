@@ -20,9 +20,14 @@ namespace PMI31CourseProject.Repository
             this.dbSet = context.Set<T>();
         }
 
-        public void Add(T element)
+        public virtual void Add(T element)
         {
             this.dbSet.Add(element);
+        }
+
+        public virtual void Delete(T entity)
+        {
+            dbSet.Remove(entity);
         }
 
         public virtual T GetById(long id)
