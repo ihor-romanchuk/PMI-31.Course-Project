@@ -29,7 +29,7 @@ namespace PMI31CourseProject
         public DbSet<Graduate> Graduates { get; set; }
         public DbSet<GraduatesImage> GraduatesImages { get; set; }
         public DbSet<Guest> Guests { get; set; }
-        public DbSet<Lecturer> Lecturers { get; set; }
+        public DbSet<Lecturer> Lecturers { get; set; } 
         public DbSet<LecturersImage> LecturersImages { get; set; }
     }
 }
