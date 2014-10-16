@@ -35,10 +35,10 @@ namespace ProgramingDeptMVC.Controllers
                     message = "Вітаємо! Ви увійшли як адміністратор.";
                     break;
                 case AuthenticationStatus.NoUser:
-                    message = "На жаль, користувача.";
+                    message = "На жаль, користувача з таким ім'ям не зареєстровано.";
                     break;
                 case AuthenticationStatus.WrongPassword:
-                    message = "Íà æàëü, âè ââåëè íåâ³ðíèé ïàðîëü.";
+                    message = "Ви ввели не вірний пароль.";
                     break;
             }
             return message;
