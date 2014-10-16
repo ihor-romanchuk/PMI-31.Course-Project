@@ -9,7 +9,7 @@ using System.Configuration;
 
 namespace PMI31CourseProject.Repository
 {
-    class Repository<T> where T: class
+    public class Repository<T> where T: class
     {
         private Course_ProjectEntities dataContext;
         private DbSet<T> dbSet;
