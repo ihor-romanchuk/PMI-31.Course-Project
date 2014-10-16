@@ -12,17 +12,32 @@ namespace PMI31CourseProject.Repository
     class Repository<T> where T: class
     {
         private Course_ProjectEntities dataContext;
-        private DbSet<T> bdSet;
+        private DbSet<T> dbSet;
 
         public Repository(Course_ProjectEntities context)
         {
             this.dataContext = context;
-            this.bdSet = context.Set<T>();
+            this.dbSet = context.Set<T>();
         }
 
         public void Add(T element)
         {
-            this.bdSet.Add(element);
+            this.dbSet.Add(element);
+        }
+
+        public virtual T GetById(long id)
+        {
+            return dbSet.Find(id);
+        }
+
+        public virtual T GetById(string id)
+        {
+            return dbSet.Find(id);
+        }
+
+        public virtual IEnumerable<T> GetAll()
+        {
+            return dbSet.ToList();
         }
     }
 }
