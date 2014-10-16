@@ -13,6 +13,7 @@ namespace ProgramingDeptMVC.Controllers
 
         public ActionResult Index()
         {
+            @ViewBag.Title = "Головна";
             return View();
         }
 
