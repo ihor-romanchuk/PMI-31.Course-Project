@@ -19,8 +19,9 @@ namespace ProgramingDeptMVC.Controllers
             @ViewBag.Title = "Головна";
             return View();
         }
+
         [HttpPost]
-        public string Index(LoginAction resultOfLoginAction)
+        public string Login(LoginAction resultOfLoginAction)
         {
             string message = string.Empty;
             switch (resultOfLoginAction.AuthenticationCheck(db))
@@ -39,6 +40,25 @@ namespace ProgramingDeptMVC.Controllers
                     break;
                 case AuthenticationStatus.WrongPassword:
                     message = "Ви ввели не вірний пароль.";
+                    break;
+            }
+            return message;
+        }
+
+        [HttpPost]
+        public string Register(RegistrationAction registration)
+        {
+            string message = string.Empty;
+            switch (registration.RegistrationCheck(db))
+            {
+                case RegistrationStatus.RegistratedGraduate:
+                    message = "Ви зареєструвалися як випускник.";
+                    break;
+                case RegistrationStatus.RegistratedLecturer:
+                    message = "Ви зареєструвалися як викладач.";
+                    break;
+                case RegistrationStatus.Failed:
+                    message = "Користувач з таким іменем уже зарестрований.";
                     break;
             }
             return message;
