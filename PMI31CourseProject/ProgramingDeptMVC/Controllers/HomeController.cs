@@ -19,9 +19,13 @@ namespace ProgramingDeptMVC.Controllers
             @ViewBag.Title = "Головна";
             return View();
         }
-
+        public ActionResult Register()
+        {
+            ViewBag.Title = "Register";
+            return View();
+        }
         [HttpPost]
-        public string Login(LoginAction resultOfLoginAction)
+        public string Index(LoginAction resultOfLoginAction)
         {
             string message = string.Empty;
             switch (resultOfLoginAction.AuthenticationCheck(db))
