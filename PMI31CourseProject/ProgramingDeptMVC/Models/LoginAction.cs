@@ -26,35 +26,35 @@ namespace ProgramingDeptMVC.Models
 
         public AuthenticationStatus AuthenticationCheck(Course_ProjectEntities entities)
         {
-            Repository<Graduate> graduates = new Repository<Graduate>(entities);
-            Repository<Lecturer> lecturers = new Repository<Lecturer>(entities);
-            Repository<Administrator> admins = new Repository<Administrator>(entities);
-            Graduate enterinGraduate = graduates.GetById(username);
-            Lecturer enteringLecturer = lecturers.GetById(username);
-            Administrator enteringAdministrator = admins.GetById(username);
-            if (enterinGraduate != null)
-            {
-                return AuthenticationStatus.Graduate;
-            }
-            if (enteringLecturer != null)
-            {
-                return AuthenticationStatus.Lecturer;
-            }
-            if (enteringAdministrator != null)
-            {
-                if (enteringAdministrator.password == this.password)
-                {
-                    return AuthenticationStatus.Administrator;
-                }
-                else
-                {
-                    return AuthenticationStatus.WrongPassword;
-                }
-            }
-            else
-            {
+            //Repository<Graduate> graduates = new Repository<Graduate>(entities);
+            //Repository<Lecturer> lecturers = new Repository<Lecturer>(entities);
+            //Repository<Administrator> admins = new Repository<Administrator>(entities);
+            //Graduate enterinGraduate = graduates.GetById(username);
+            //Lecturer enteringLecturer = lecturers.GetById(username);
+            //Administrator enteringAdministrator = admins.GetById(username);
+            //if (enterinGraduate != null)
+            //{
+            //    return AuthenticationStatus.Graduate;
+            //}
+            //if (enteringLecturer != null)
+            //{
+            //    return AuthenticationStatus.Lecturer;
+            //}
+            //if (enteringAdministrator != null)
+            //{
+            //    if (enteringAdministrator.password == this.password)
+            //    {
+            //        return AuthenticationStatus.Administrator;
+            //    }
+            //    else
+            //    {
+            //        return AuthenticationStatus.WrongPassword;
+            //    }
+            //}
+            //else
+            //{
                 return AuthenticationStatus.NoUser;
-            }
+            //}
         }
     }
 }

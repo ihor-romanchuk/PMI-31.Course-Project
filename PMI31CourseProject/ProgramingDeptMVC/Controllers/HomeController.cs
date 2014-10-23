@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using PMI31CourseProject;
 using ProgramingDeptMVC.Models;
-
+using DAL;
 namespace ProgramingDeptMVC.Controllers
 {
     public class HomeController : Controller
@@ -27,26 +27,42 @@ namespace ProgramingDeptMVC.Controllers
         [HttpPost]
         public string Index(LoginAction resultOfLoginAction)
         {
+
             string message = string.Empty;
-            switch (resultOfLoginAction.AuthenticationCheck(db))
+            using (UnitOfWork<UserOfSite> un = new UnitOfWork<UserOfSite>())
             {
-                case AuthenticationStatus.Graduate:
-                    message = "Вітаємо! Ви увійшли як випускник.";
-                    break;
-                case AuthenticationStatus.Lecturer:
-                    message = "Вітаємо! Ви увійшли як викладач.";
-                    break;
-                case AuthenticationStatus.Administrator:
-                    message = "Вітаємо! Ви увійшли як адміністратор.";
-                    break;
-                case AuthenticationStatus.NoUser:
-                    message = "На жаль, користувача з таким ім'ям не зареєстровано.";
-                    break;
-                case AuthenticationStatus.WrongPassword:
-                    message = "Ви ввели не вірний пароль.";
-                    break;
+                UserOfSite us = new UserOfSite();
+                us.login = resultOfLoginAction.username;
+                us.password = resultOfLoginAction.password;
+                us.role = "admin";
+                un.ContactRepository.Add(us);
+                un.Save();
+                IEnumerable<UserOfSite> col = un.ContactRepository.GetAll();
+                foreach (UserOfSite it in col)
+                {
+                    message += it.login;
+                }
             }
             return message;
+            //switch (resultOfLoginAction.AuthenticationCheck(db))
+            //{
+            //    case AuthenticationStatus.Graduate:
+            //        message = "Вітаємо! Ви увійшли як випускник.";
+            //        break;
+            //    case AuthenticationStatus.Lecturer:
+            //        message = "Вітаємо! Ви увійшли як викладач.";
+            //        break;
+            //    case AuthenticationStatus.Administrator:
+            //        message = "Вітаємо! Ви увійшли як адміністратор.";
+            //        break;
+            //    case AuthenticationStatus.NoUser:
+            //        message = "На жаль, користувача з таким ім'ям не зареєстровано.";
+            //        break;
+            //    case AuthenticationStatus.WrongPassword:
+            //        message = "Ви ввели не вірний пароль.";
+            //        break;
+            //}
+            
         }
 
         [HttpPost]

@@ -10,7 +10,7 @@ using PMI31CourseProject.Repository;
 
 namespace DAL
 {
-    public class UnitOfWork<T> where T : class
+    public class UnitOfWork<T>:IDisposable where T : class
     {
         private Course_ProjectEntities _context;
         private ConnectRepository<T> _contactRepository;
@@ -34,6 +34,24 @@ namespace DAL
         public void Save()
         {
             _context.SaveChanges();
+        }
+        private bool _disposed = false;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+            }
+            this._disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
