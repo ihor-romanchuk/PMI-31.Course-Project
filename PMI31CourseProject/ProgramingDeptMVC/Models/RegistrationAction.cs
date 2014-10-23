@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using BLL;
 using PMI31CourseProject;
 using PMI31CourseProject.Repository;
 
@@ -14,23 +15,42 @@ namespace ProgramingDeptMVC.Models
         public string email { get; set; }
         public Role role { get; set; }
 
-        public RegistrationStatus RegistrationCheck(Course_ProjectEntities entities)
+        public RegistrationStatus RegistrationCheck(ManageUsers users)
         {
-            Repository<Graduate> graduates = new Repository<Graduate>(entities);
-            Repository<Lecturer> lecturers = new Repository<Lecturer>(entities);
-            Graduate enterinGraduate = graduates.GetById(username);
-            Lecturer enteringLecturer = lecturers.GetById(username);
-            if (enterinGraduate == null)
+            UserOfSite regUser;
+            regUser = users.GetById(username);
+            if (regUser != null)
             {
-                return RegistrationStatus.RegistratedGraduate;
-            }
-            if (enteringLecturer == null)
-            {
-                return RegistrationStatus.RegistratedLecturer;
+                return RegistrationStatus.Failed;
             }
             else
             {
-                return RegistrationStatus.Failed;
+                regUser = new UserOfSite();
+                regUser.login = username;
+                regUser.password = password;
+                string roleName = string.Empty;
+                if (this.role == Role.Graduate)
+                {
+                    roleName = "graduate";
+                }
+                if (this.role == Role.Lecturer)
+                {
+                    roleName = "lecturer";
+                }
+                regUser.role = roleName;
+                users.AddUser(regUser);
+                if (this.role == Role.Graduate)
+                {
+                    return RegistrationStatus.RegistratedGraduate;
+                }
+                if (this.role == Role.Lecturer)
+                {
+                    return RegistrationStatus.RegistratedLecturer;
+                }
+                else
+                {
+                    return RegistrationStatus.Failed;
+                }
             }
         }
     }

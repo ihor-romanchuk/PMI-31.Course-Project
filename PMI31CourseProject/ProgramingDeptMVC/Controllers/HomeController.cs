@@ -49,25 +49,25 @@ namespace ProgramingDeptMVC.Controllers
                     break;
             }
             return message;
-            
+
         }
 
         [HttpPost]
         public string Register(RegistrationAction registration)
         {
             string message = string.Empty;
-            //switch (registration.RegistrationCheck(db))
-            //{
-            //    case RegistrationStatus.RegistratedGraduate:
-            //        message = "Ви зареєструвалися як випускник.";
-            //        break;
-            //    case RegistrationStatus.RegistratedLecturer:
-            //        message = "Ви зареєструвалися як викладач.";
-            //        break;
-            //    case RegistrationStatus.Failed:
-            //        message = "Користувач з таким іменем уже зарестрований.";
-            //        break;
-            //}
+            switch (registration.RegistrationCheck(manager))
+            {
+                case RegistrationStatus.RegistratedGraduate:
+                    message = "Ви зареєструвалися як випускник.";
+                    break;
+                case RegistrationStatus.RegistratedLecturer:
+                    message = "Ви зареєструвалися як викладач.";
+                    break;
+                case RegistrationStatus.Failed:
+                    message = "Користувач з таким іменем уже зарестрований.";
+                    break;
+            }
             return message;
         }
     }
