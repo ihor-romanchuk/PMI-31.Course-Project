@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Course_ProjectModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Course_ProjectModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Course_ProjectModel.Store.Admin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Graduates" EntityType="Course_ProjectModel.Store.Graduates" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Graduates_image" EntityType="Course_ProjectModel.Store.Graduates_image" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Guests" EntityType="Course_ProjectModel.Store.Guests" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Lecturer_image" EntityType="Course_ProjectModel.Store.Lecturer_image" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Lecturers" EntityType="Course_ProjectModel.Store.Lecturers" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Name="login" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6035: The relationship 'fk_Graduates_image' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+      -->
+        <EntityType Name="Graduates">
+          <Key>
+            <PropertyRef Name="id_student" />
+          </Key>
+          <Property Name="id_student" Type="int" Nullable="false" />
+          <Property Name="id_image" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="surname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="year_of_graduation" Type="date" Nullable="false" />
+          <Property Name="BIO" Type="varchar(max)" />
+          <Property Name="contact_data" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Graduates_image">
+          <Key>
+            <PropertyRef Name="id_image" />
+          </Key>
+          <Property Name="id_image" Type="int" Nullable="false" />
+          <Property Name="image_number" Type="int" />
+          <Property Name="data" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Guests">
+          <Key>
+            <PropertyRef Name="id_PC" />
+          </Key>
+          <Property Name="id_PC" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lecturer_image">
+          <Key>
+            <PropertyRef Name="id_image" />
+          </Key>
+          <Property Name="id_image" Type="int" Nullable="false" />
+          <Property Name="image_number" Type="int" />
+          <Property Name="data" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6035: The relationship 'fk_Lecturer_image' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+      -->
+        <EntityType Name="Lecturers">
+          <Key>
+            <PropertyRef Name="id_Lecturer" />
+          </Key>
+          <Property Name="id_Lecturer" Type="int" Nullable="false" />
+          <Property Name="id_image" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="surname" Type="varchar" MaxLength="50" />
+          <Property Name="subject" Type="varchar" MaxLength="20" />
+          <Property Name="contact_data" Type="varchar(max)" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Course_ProjectModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Course_ProjectEntities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Course_ProjectModel.Admin" />
+          <EntitySet Name="Graduates" EntityType="Course_ProjectModel.Graduate" />
+          <EntitySet Name="Graduates_image" EntityType="Course_ProjectModel.Graduates_image" />
+          <EntitySet Name="Guests" EntityType="Course_ProjectModel.Guest" />
+          <EntitySet Name="Lecturer_image" EntityType="Course_ProjectModel.Lecturer_image" />
+          <EntitySet Name="Lecturers" EntityType="Course_ProjectModel.Lecturer" />
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Graduate">
+          <Key>
+            <PropertyRef Name="id_student" />
+          </Key>
+          <Property Name="id_student" Type="Int32" Nullable="false" />
+          <Property Name="id_image" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="year_of_graduation" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BIO" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="contact_data" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Graduates_image">
+          <Key>
+            <PropertyRef Name="id_image" />
+          </Key>
+          <Property Name="id_image" Type="Int32" Nullable="false" />
+          <Property Name="image_number" Type="Int32" />
+          <Property Name="data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="id_PC" />
+          </Key>
+          <Property Name="id_PC" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lecturer_image">
+          <Key>
+            <PropertyRef Name="id_image" />
+          </Key>
+          <Property Name="id_image" Type="Int32" Nullable="false" />
+          <Property Name="image_number" Type="Int32" />
+          <Property Name="data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Lecturer">
+          <Key>
+            <PropertyRef Name="id_Lecturer" />
+          </Key>
+          <Property Name="id_Lecturer" Type="Int32" Nullable="false" />
+          <Property Name="id_image" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="surname" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="subject" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="contact_data" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Course_ProjectModelStoreContainer" CdmEntityContainer="Course_ProjectEntities1">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="Course_ProjectModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Graduates">
+            <EntityTypeMapping TypeName="Course_ProjectModel.Graduate">
+              <MappingFragment StoreEntitySet="Graduates">
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
+                <ScalarProperty Name="id_image" ColumnName="id_image" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="year_of_graduation" ColumnName="year_of_graduation" />
+                <ScalarProperty Name="BIO" ColumnName="BIO" />
+                <ScalarProperty Name="contact_data" ColumnName="contact_data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Graduates_image">
+            <EntityTypeMapping TypeName="Course_ProjectModel.Graduates_image">
+              <MappingFragment StoreEntitySet="Graduates_image">
+                <ScalarProperty Name="id_image" ColumnName="id_image" />
+                <ScalarProperty Name="image_number" ColumnName="image_number" />
+                <ScalarProperty Name="data" ColumnName="data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guests">
+            <EntityTypeMapping TypeName="Course_ProjectModel.Guest">
+              <MappingFragment StoreEntitySet="Guests">
+                <ScalarProperty Name="id_PC" ColumnName="id_PC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lecturer_image">
+            <EntityTypeMapping TypeName="Course_ProjectModel.Lecturer_image">
+              <MappingFragment StoreEntitySet="Lecturer_image">
+                <ScalarProperty Name="id_image" ColumnName="id_image" />
+                <ScalarProperty Name="image_number" ColumnName="image_number" />
+                <ScalarProperty Name="data" ColumnName="data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lecturers">
+            <EntityTypeMapping TypeName="Course_ProjectModel.Lecturer">
+              <MappingFragment StoreEntitySet="Lecturers">
+                <ScalarProperty Name="id_Lecturer" ColumnName="id_Lecturer" />
+                <ScalarProperty Name="id_image" ColumnName="id_image" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="contact_data" ColumnName="contact_data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
