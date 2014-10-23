@@ -10,7 +10,7 @@ using PMI31CourseProject.Repository;
 
 namespace DAL
 {
-    public class UnitOfWork<T> : IDisposable where T : class
+    public class UnitOfWork<T> where T : class
     {
         private Course_ProjectEntities _context;
         private ConnectRepository<T> _contactRepository;

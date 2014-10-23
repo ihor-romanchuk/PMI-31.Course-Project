@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DatabaseForSiteModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DatabaseForSiteModelStoreContainer">
+          <EntitySet Name="Graduates" EntityType="DatabaseForSiteModel.Store.Graduates" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Graduates_image" EntityType="DatabaseForSiteModel.Store.Graduates_image" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Lecturer_image" EntityType="DatabaseForSiteModel.Store.Lecturer_image" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Lecturers" EntityType="DatabaseForSiteModel.Store.Lecturers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserOfSite" EntityType="DatabaseForSiteModel.Store.UserOfSite" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="fk_id_image" Association="DatabaseForSiteModel.Store.fk_id_image">
+            <End Role="Graduates_image" EntitySet="Graduates_image" />
+            <End Role="Graduates" EntitySet="Graduates" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Lecturer_image" Association="DatabaseForSiteModel.Store.fk_Lecturer_image">
+            <End Role="Lecturer_image" EntitySet="Lecturer_image" />
+            <End Role="Lecturers" EntitySet="Lecturers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Graduates">
+          <Key>
+            <PropertyRef Name="id_student" />
+          </Key>
+          <Property Name="id_student" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_image" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="surname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="year_of_graduation" Type="date" Nullable="false" />
+          <Property Name="BIO" Type="varchar(max)" />
+          <Property Name="contact_data" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Graduates_image">
+          <Key>
+            <PropertyRef Name="id_image" />
+          </Key>
+          <Property Name="id_image" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="data" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lecturer_image">
+          <Key>
+            <PropertyRef Name="id_image" />
+          </Key>
+          <Property Name="id_image" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="data" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lecturers">
+          <Key>
+            <PropertyRef Name="id_Lecturer" />
+          </Key>
+          <Property Name="id_Lecturer" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_image" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="surname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="subject" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="BIO" Type="varchar(max)" />
+          <Property Name="contact_data" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="UserOfSite">
+          <Key>
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="login" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="role" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="fk_id_image">
+          <End Role="Graduates_image" Type="DatabaseForSiteModel.Store.Graduates_image" Multiplicity="1" />
+          <End Role="Graduates" Type="DatabaseForSiteModel.Store.Graduates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Graduates_image">
+              <PropertyRef Name="id_image" />
+            </Principal>
+            <Dependent Role="Graduates">
+              <PropertyRef Name="id_image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Lecturer_image">
+          <End Role="Lecturer_image" Type="DatabaseForSiteModel.Store.Lecturer_image" Multiplicity="1" />
+          <End Role="Lecturers" Type="DatabaseForSiteModel.Store.Lecturers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer_image">
+              <PropertyRef Name="id_image" />
+            </Principal>
+            <Dependent Role="Lecturers">
+              <PropertyRef Name="id_image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseForSiteModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Course_ProjectEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Graduates" EntityType="DatabaseForSiteModel.Graduate" />
+          <EntitySet Name="Graduates_image" EntityType="DatabaseForSiteModel.Graduates_image" />
+          <EntitySet Name="Lecturer_image" EntityType="DatabaseForSiteModel.Lecturer_image" />
+          <EntitySet Name="Lecturers" EntityType="DatabaseForSiteModel.Lecturer" />
+          <EntitySet Name="UserOfSites" EntityType="DatabaseForSiteModel.UserOfSite" />
+          <AssociationSet Name="fk_id_image" Association="DatabaseForSiteModel.fk_id_image">
+            <End Role="Graduates_image" EntitySet="Graduates_image" />
+            <End Role="Graduates" EntitySet="Graduates" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Lecturer_image" Association="DatabaseForSiteModel.fk_Lecturer_image">
+            <End Role="Lecturer_image" EntitySet="Lecturer_image" />
+            <End Role="Lecturers" EntitySet="Lecturers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Graduate">
+          <Key>
+            <PropertyRef Name="id_student" />
+          </Key>
+          <Property Name="id_student" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="id_image" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="year_of_graduation" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BIO" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="contact_data" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Graduates_image" Relationship="DatabaseForSiteModel.fk_id_image" FromRole="Graduates" ToRole="Graduates_image" />
+        </EntityType>
+        <EntityType Name="Graduates_image">
+          <Key>
+            <PropertyRef Name="id_image" />
+          </Key>
+          <Property Name="id_image" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Graduates" Relationship="DatabaseForSiteModel.fk_id_image" FromRole="Graduates_image" ToRole="Graduates" />
+        </EntityType>
+        <EntityType Name="Lecturer_image">
+          <Key>
+            <PropertyRef Name="id_image" />
+          </Key>
+          <Property Name="id_image" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Lecturers" Relationship="DatabaseForSiteModel.fk_Lecturer_image" FromRole="Lecturer_image" ToRole="Lecturers" />
+        </EntityType>
+        <EntityType Name="Lecturer">
+          <Key>
+            <PropertyRef Name="id_Lecturer" />
+          </Key>
+          <Property Name="id_Lecturer" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="id_image" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="subject" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="BIO" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="contact_data" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Lecturer_image" Relationship="DatabaseForSiteModel.fk_Lecturer_image" FromRole="Lecturers" ToRole="Lecturer_image" />
+        </EntityType>
+        <EntityType Name="UserOfSite">
+          <Key>
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="role" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <Association Name="fk_id_image">
+          <End Role="Graduates_image" Type="DatabaseForSiteModel.Graduates_image" Multiplicity="1" />
+          <End Role="Graduates" Type="DatabaseForSiteModel.Graduate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Graduates_image">
+              <PropertyRef Name="id_image" />
+            </Principal>
+            <Dependent Role="Graduates">
+              <PropertyRef Name="id_image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Lecturer_image">
+          <End Role="Lecturer_image" Type="DatabaseForSiteModel.Lecturer_image" Multiplicity="1" />
+          <End Role="Lecturers" Type="DatabaseForSiteModel.Lecturer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lecturer_image">
+              <PropertyRef Name="id_image" />
+            </Principal>
+            <Dependent Role="Lecturers">
+              <PropertyRef Name="id_image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseForSiteModelStoreContainer" CdmEntityContainer="Course_ProjectEntities">
+          <EntitySetMapping Name="Graduates">
+            <EntityTypeMapping TypeName="DatabaseForSiteModel.Graduate">
+              <MappingFragment StoreEntitySet="Graduates">
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
+                <ScalarProperty Name="id_image" ColumnName="id_image" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="year_of_graduation" ColumnName="year_of_graduation" />
+                <ScalarProperty Name="BIO" ColumnName="BIO" />
+                <ScalarProperty Name="contact_data" ColumnName="contact_data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Graduates_image">
+            <EntityTypeMapping TypeName="DatabaseForSiteModel.Graduates_image">
+              <MappingFragment StoreEntitySet="Graduates_image">
+                <ScalarProperty Name="id_image" ColumnName="id_image" />
+                <ScalarProperty Name="data" ColumnName="data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lecturer_image">
+            <EntityTypeMapping TypeName="DatabaseForSiteModel.Lecturer_image">
+              <MappingFragment StoreEntitySet="Lecturer_image">
+                <ScalarProperty Name="id_image" ColumnName="id_image" />
+                <ScalarProperty Name="data" ColumnName="data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lecturers">
+            <EntityTypeMapping TypeName="DatabaseForSiteModel.Lecturer">
+              <MappingFragment StoreEntitySet="Lecturers">
+                <ScalarProperty Name="id_Lecturer" ColumnName="id_Lecturer" />
+                <ScalarProperty Name="id_image" ColumnName="id_image" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="BIO" ColumnName="BIO" />
+                <ScalarProperty Name="contact_data" ColumnName="contact_data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserOfSites">
+            <EntityTypeMapping TypeName="DatabaseForSiteModel.UserOfSite">
+              <MappingFragment StoreEntitySet="UserOfSite">
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
