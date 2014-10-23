@@ -47,10 +47,6 @@
       <Project>{3c139d4c-a442-447c-be84-ee69cb246c40}</Project>
       <Name>DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ProgramingDeptMVC\ProgramingDeptMVC.csproj">
-      <Project>{0972a533-bb7e-4610-8251-4b5f9cefe019}</Project>
-      <Name>ProgramingDeptMVC</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

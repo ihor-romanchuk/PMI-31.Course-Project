@@ -149,6 +149,10 @@
     <Content Include="Views\Shared\_LayoutMasterPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{0e1de679-c7b3-4ef3-85aa-88691568389a}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PMI31CourseProject\DAL.csproj">
       <Project>{3c139d4c-a442-447c-be84-ee69cb246c40}</Project>
       <Name>DAL</Name>

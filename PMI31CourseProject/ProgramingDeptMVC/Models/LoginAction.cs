@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using PMI31CourseProject;
 using PMI31CourseProject.Repository;
-
+using BLL;
 namespace ProgramingDeptMVC.Models
 {
     public class LoginAction
@@ -24,37 +24,25 @@ namespace ProgramingDeptMVC.Models
             password = pswrd;
         }
 
-        public AuthenticationStatus AuthenticationCheck(Course_ProjectEntities entities)
+        public AuthenticationStatus AuthenticationCheck(ManageUsers users)
         {
-            //Repository<Graduate> graduates = new Repository<Graduate>(entities);
-            //Repository<Lecturer> lecturers = new Repository<Lecturer>(entities);
-            //Repository<Administrator> admins = new Repository<Administrator>(entities);
-            //Graduate enterinGraduate = graduates.GetById(username);
-            //Lecturer enteringLecturer = lecturers.GetById(username);
-            //Administrator enteringAdministrator = admins.GetById(username);
-            //if (enterinGraduate != null)
-            //{
-            //    return AuthenticationStatus.Graduate;
-            //}
-            //if (enteringLecturer != null)
-            //{
-            //    return AuthenticationStatus.Lecturer;
-            //}
-            //if (enteringAdministrator != null)
-            //{
-            //    if (enteringAdministrator.password == this.password)
-            //    {
-            //        return AuthenticationStatus.Administrator;
-            //    }
-            //    else
-            //    {
-            //        return AuthenticationStatus.WrongPassword;
-            //    }
-            //}
-            //else
-            //{
-                return AuthenticationStatus.NoUser;
-            //}
+            UserOfSite loggingUser = users.GetById(username);
+            if (loggingUser != null)
+            {
+                if (loggingUser.role == "admin")
+                {
+                    return AuthenticationStatus.Administrator;
+                }
+                if (loggingUser.role == "graduate")
+                {
+                    return AuthenticationStatus.Graduate;
+                }
+                if (loggingUser.role == "lecturer")
+                {
+                    return AuthenticationStatus.Lecturer;
+                }
+            }
+            return AuthenticationStatus.NoUser;
         }
     }
 }
