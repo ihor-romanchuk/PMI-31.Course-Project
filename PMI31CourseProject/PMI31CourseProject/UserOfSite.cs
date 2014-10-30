@@ -14,8 +14,17 @@ namespace PMI31CourseProject
     
     public partial class UserOfSite
     {
+        public UserOfSite()
+        {
+            this.Graduates = new HashSet<Graduate>();
+            this.Lecturers = new HashSet<Lecturer>();
+        }
+    
         public string login { get; set; }
         public string password { get; set; }
         public string role { get; set; }
+    
+        public virtual ICollection<Graduate> Graduates { get; set; }
+        public virtual ICollection<Lecturer> Lecturers { get; set; }
     }
 }

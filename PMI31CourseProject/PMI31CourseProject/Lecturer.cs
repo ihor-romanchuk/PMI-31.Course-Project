@@ -21,7 +21,9 @@ namespace PMI31CourseProject
         public string subject { get; set; }
         public string BIO { get; set; }
         public string contact_data { get; set; }
+        public string login { get; set; }
     
         public virtual Lecturer_image Lecturer_image { get; set; }
+        public virtual UserOfSite UserOfSite { get; set; }
     }
 }

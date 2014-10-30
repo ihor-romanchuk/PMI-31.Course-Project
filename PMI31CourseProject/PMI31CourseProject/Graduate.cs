@@ -21,7 +21,9 @@ namespace PMI31CourseProject
         public System.DateTime year_of_graduation { get; set; }
         public string BIO { get; set; }
         public string contact_data { get; set; }
+        public string login { get; set; }
     
+        public virtual UserOfSite UserOfSite { get; set; }
         public virtual Graduates_image Graduates_image { get; set; }
     }
 }
