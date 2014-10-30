@@ -29,6 +29,10 @@ namespace ProgramingDeptMVC.Models
             UserOfSite loggingUser = users.GetById(username);
             if (loggingUser != null)
             {
+                if (loggingUser.password != this.password)
+                {
+                    return AuthenticationStatus.WrongPassword;
+                }
                 if (loggingUser.role == "admin")
                 {
                     return AuthenticationStatus.Administrator;
