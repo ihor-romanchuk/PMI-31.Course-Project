@@ -11,12 +11,20 @@
           <EntitySet Name="Lecturer_image" EntityType="DatabaseForSiteModel.Store.Lecturer_image" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Lecturers" EntityType="DatabaseForSiteModel.Store.Lecturers" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserOfSite" EntityType="DatabaseForSiteModel.Store.UserOfSite" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="fk_Graduate_login" Association="DatabaseForSiteModel.Store.fk_Graduate_login">
+            <End Role="UserOfSite" EntitySet="UserOfSite" />
+            <End Role="Graduates" EntitySet="Graduates" />
+          </AssociationSet>
           <AssociationSet Name="fk_id_image" Association="DatabaseForSiteModel.Store.fk_id_image">
             <End Role="Graduates_image" EntitySet="Graduates_image" />
             <End Role="Graduates" EntitySet="Graduates" />
           </AssociationSet>
           <AssociationSet Name="fk_Lecturer_image" Association="DatabaseForSiteModel.Store.fk_Lecturer_image">
             <End Role="Lecturer_image" EntitySet="Lecturer_image" />
+            <End Role="Lecturers" EntitySet="Lecturers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Lecturer_login" Association="DatabaseForSiteModel.Store.fk_Lecturer_login">
+            <End Role="UserOfSite" EntitySet="UserOfSite" />
             <End Role="Lecturers" EntitySet="Lecturers" />
           </AssociationSet>
         </EntityContainer>
@@ -31,6 +39,7 @@
           <Property Name="year_of_graduation" Type="date" Nullable="false" />
           <Property Name="BIO" Type="varchar(max)" />
           <Property Name="contact_data" Type="varchar(max)" />
+          <Property Name="login" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Graduates_image">
           <Key>
@@ -57,6 +66,7 @@
           <Property Name="subject" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="BIO" Type="varchar(max)" />
           <Property Name="contact_data" Type="varchar(max)" />
+          <Property Name="login" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserOfSite">
           <Key>
@@ -66,6 +76,18 @@
           <Property Name="password" Type="varchar" MaxLength="50" />
           <Property Name="role" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="fk_Graduate_login">
+          <End Role="UserOfSite" Type="DatabaseForSiteModel.Store.UserOfSite" Multiplicity="1" />
+          <End Role="Graduates" Type="DatabaseForSiteModel.Store.Graduates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserOfSite">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="Graduates">
+              <PropertyRef Name="login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_id_image">
           <End Role="Graduates_image" Type="DatabaseForSiteModel.Store.Graduates_image" Multiplicity="1" />
           <End Role="Graduates" Type="DatabaseForSiteModel.Store.Graduates" Multiplicity="*" />
@@ -90,6 +112,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Lecturer_login">
+          <End Role="UserOfSite" Type="DatabaseForSiteModel.Store.UserOfSite" Multiplicity="1" />
+          <End Role="Lecturers" Type="DatabaseForSiteModel.Store.Lecturers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserOfSite">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="Lecturers">
+              <PropertyRef Name="login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
@@ -101,12 +135,20 @@
           <EntitySet Name="Lecturer_image" EntityType="DatabaseForSiteModel.Lecturer_image" />
           <EntitySet Name="Lecturers" EntityType="DatabaseForSiteModel.Lecturer" />
           <EntitySet Name="UserOfSites" EntityType="DatabaseForSiteModel.UserOfSite" />
+          <AssociationSet Name="fk_Graduate_login" Association="DatabaseForSiteModel.fk_Graduate_login">
+            <End Role="UserOfSite" EntitySet="UserOfSites" />
+            <End Role="Graduates" EntitySet="Graduates" />
+          </AssociationSet>
           <AssociationSet Name="fk_id_image" Association="DatabaseForSiteModel.fk_id_image">
             <End Role="Graduates_image" EntitySet="Graduates_image" />
             <End Role="Graduates" EntitySet="Graduates" />
           </AssociationSet>
           <AssociationSet Name="fk_Lecturer_image" Association="DatabaseForSiteModel.fk_Lecturer_image">
             <End Role="Lecturer_image" EntitySet="Lecturer_image" />
+            <End Role="Lecturers" EntitySet="Lecturers" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Lecturer_login" Association="DatabaseForSiteModel.fk_Lecturer_login">
+            <End Role="UserOfSite" EntitySet="UserOfSites" />
             <End Role="Lecturers" EntitySet="Lecturers" />
           </AssociationSet>
         </EntityContainer>
@@ -121,6 +163,8 @@
           <Property Name="year_of_graduation" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="BIO" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="contact_data" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="UserOfSite" Relationship="DatabaseForSiteModel.fk_Graduate_login" FromRole="Graduates" ToRole="UserOfSite" />
           <NavigationProperty Name="Graduates_image" Relationship="DatabaseForSiteModel.fk_id_image" FromRole="Graduates" ToRole="Graduates_image" />
         </EntityType>
         <EntityType Name="Graduates_image">
@@ -150,7 +194,9 @@
           <Property Name="subject" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="BIO" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="contact_data" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="Lecturer_image" Relationship="DatabaseForSiteModel.fk_Lecturer_image" FromRole="Lecturers" ToRole="Lecturer_image" />
+          <NavigationProperty Name="UserOfSite" Relationship="DatabaseForSiteModel.fk_Lecturer_login" FromRole="Lecturers" ToRole="UserOfSite" />
         </EntityType>
         <EntityType Name="UserOfSite">
           <Key>
@@ -159,7 +205,21 @@
           <Property Name="login" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="role" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Graduates" Relationship="DatabaseForSiteModel.fk_Graduate_login" FromRole="UserOfSite" ToRole="Graduates" />
+          <NavigationProperty Name="Lecturers" Relationship="DatabaseForSiteModel.fk_Lecturer_login" FromRole="UserOfSite" ToRole="Lecturers" />
         </EntityType>
+        <Association Name="fk_Graduate_login">
+          <End Role="UserOfSite" Type="DatabaseForSiteModel.UserOfSite" Multiplicity="1" />
+          <End Role="Graduates" Type="DatabaseForSiteModel.Graduate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserOfSite">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="Graduates">
+              <PropertyRef Name="login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_id_image">
           <End Role="Graduates_image" Type="DatabaseForSiteModel.Graduates_image" Multiplicity="1" />
           <End Role="Graduates" Type="DatabaseForSiteModel.Graduate" Multiplicity="*" />
@@ -184,6 +244,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Lecturer_login">
+          <End Role="UserOfSite" Type="DatabaseForSiteModel.UserOfSite" Multiplicity="1" />
+          <End Role="Lecturers" Type="DatabaseForSiteModel.Lecturer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserOfSite">
+              <PropertyRef Name="login" />
+            </Principal>
+            <Dependent Role="Lecturers">
+              <PropertyRef Name="login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -200,6 +272,7 @@
                 <ScalarProperty Name="year_of_graduation" ColumnName="year_of_graduation" />
                 <ScalarProperty Name="BIO" ColumnName="BIO" />
                 <ScalarProperty Name="contact_data" ColumnName="contact_data" />
+                <ScalarProperty Name="login" ColumnName="login" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -229,6 +302,7 @@
                 <ScalarProperty Name="subject" ColumnName="subject" />
                 <ScalarProperty Name="BIO" ColumnName="BIO" />
                 <ScalarProperty Name="contact_data" ColumnName="contact_data" />
+                <ScalarProperty Name="login" ColumnName="login" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
