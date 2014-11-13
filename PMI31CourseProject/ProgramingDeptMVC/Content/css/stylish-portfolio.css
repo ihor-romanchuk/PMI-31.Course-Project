@@ -19,14 +19,14 @@ body {
     margin: 15% auto;
 }
 #top{
-      background: url(~/Content/img/background.jpg) no-repeat center center scroll;
+      background: url(/Content/img/background.jpg) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
 }
 .registration{
-     background: url(~/Content/img/back.gif) no-repeat center center scroll;
+     background: url(/Content/img/back.gif) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -243,12 +243,7 @@ hr.small {
     height: 500px;
 }
 
-@media(max-width:768px) {
-    .map {
-        height: 75%;
-    }
 
-}
 
 /* Footer */
 
