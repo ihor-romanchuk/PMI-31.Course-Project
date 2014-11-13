@@ -19,14 +19,14 @@ body {
     margin: 15% auto;
 }
 #top{
-      background: url(../img/background.jpg) no-repeat center center scroll;
+      background: url(~/Content/img/background.jpg) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
 }
 .registration{
-     background: url(../img/back.gif) no-repeat center center scroll;
+     background: url(~/Content/img/back.gif) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -172,7 +172,7 @@ hr.small {
     position: relative;
     width: 100%;
     height: 100%;
-    background: url(../img/bg.jpg) no-repeat center center scroll;
+    background: url(~/Content/img/back.gif) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -202,7 +202,7 @@ hr.small {
     width: 100%;
     height: 400px;
     color: #fff;
-    background: url(../img/callout.jpg) no-repeat center center scroll;
+    background: url(~/Content/img/callout.jpg) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -247,6 +247,7 @@ hr.small {
     .map {
         height: 75%;
     }
+
 }
 
 /* Footer */

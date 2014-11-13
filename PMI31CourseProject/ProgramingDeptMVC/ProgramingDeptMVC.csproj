@@ -127,26 +127,26 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
-    <Content Include="Views\Home\back.gif" />
-    <Content Include="Views\Home\background.jpg" />
-    <Content Include="Views\Home\css\bootstrap.css" />
-    <Content Include="Views\Home\css\bootstrap.min.css" />
-    <Content Include="Views\Home\css\stylish-portfolio.css" />
-    <Content Include="Views\Home\font-awesome-4.1.0\css\font-awesome.css" />
-    <Content Include="Views\Home\font-awesome-4.1.0\css\font-awesome.min.css" />
-    <Content Include="Views\Home\font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
-    <Content Include="Views\Home\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Views\Home\img\back.gif" />
-    <Content Include="Views\Home\img\background.jpg" />
-    <Content Include="Views\Home\img\bg.JPG" />
-    <Content Include="Views\Home\img\callout.jpg" />
-    <Content Include="Views\Home\img\portfolio-1.jpg" />
-    <Content Include="Views\Home\img\portfolio-2.jpg" />
-    <Content Include="Views\Home\img\portfolio-3.jpg" />
-    <Content Include="Views\Home\img\portfolio-4.jpg" />
-    <Content Include="Views\Home\js\bootstrap.js" />
-    <Content Include="Views\Home\js\bootstrap.min.js" />
-    <Content Include="Views\Home\js\jquery-1.11.0.js" />
+    <Content Include="Content\back.gif" />
+    <Content Include="Content\background.jpg" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\stylish-portfolio.css" />
+    <Content Include="Content\font-awesome-4.1.0\css\font-awesome.css" />
+    <Content Include="Content\font-awesome-4.1.0\css\font-awesome.min.css" />
+    <Content Include="Content\font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\back.gif" />
+    <Content Include="Content\img\background.jpg" />
+    <Content Include="Content\img\bg.JPG" />
+    <Content Include="Content\img\callout.jpg" />
+    <Content Include="Content\img\portfolio-1.jpg" />
+    <Content Include="Content\img\portfolio-2.jpg" />
+    <Content Include="Content\img\portfolio-3.jpg" />
+    <Content Include="Content\img\portfolio-4.jpg" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\jquery-1.11.0.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -166,9 +166,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_LayoutMasterPage.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{0e1de679-c7b3-4ef3-85aa-88691568389a}</Project>
       <Name>BLL</Name>
@@ -182,39 +179,43 @@
     <Content Include="Views\Home\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\font-awesome-4.1.0\fonts\fontawesome-webfont.eot" />
-    <Content Include="Views\Home\font-awesome-4.1.0\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Views\Home\font-awesome-4.1.0\fonts\fontawesome-webfont.woff" />
-    <Content Include="Views\Home\font-awesome-4.1.0\fonts\FontAwesome.otf" />
-    <Content Include="Views\Home\font-awesome-4.1.0\less\bordered-pulled.less" />
-    <Content Include="Views\Home\font-awesome-4.1.0\less\core.less" />
-    <Content Include="Views\Home\font-awesome-4.1.0\less\fixed-width.less" />
-    <Content Include="Views\Home\font-awesome-4.1.0\less\font-awesome.less" />
-    <Content Include="Views\Home\font-awesome-4.1.0\less\icons.less" />
-    <Content Include="Views\Home\font-awesome-4.1.0\less\larger.less" />
-    <Content Include="Views\Home\font-awesome-4.1.0\less\list.less" />
-    <Content Include="Views\Home\font-awesome-4.1.0\less\mixins.less" />
-    <Content Include="Views\Home\font-awesome-4.1.0\less\path.less" />
-    <Content Include="Views\Home\font-awesome-4.1.0\less\rotated-flipped.less" />
-    <Content Include="Views\Home\font-awesome-4.1.0\less\spinning.less" />
-    <Content Include="Views\Home\font-awesome-4.1.0\less\stacked.less" />
-    <Content Include="Views\Home\font-awesome-4.1.0\less\variables.less" />
-    <Content Include="Views\Home\font-awesome-4.1.0\scss\font-awesome.scss" />
-    <Content Include="Views\Home\font-awesome-4.1.0\scss\_bordered-pulled.scss" />
-    <Content Include="Views\Home\font-awesome-4.1.0\scss\_core.scss" />
-    <Content Include="Views\Home\font-awesome-4.1.0\scss\_fixed-width.scss" />
-    <Content Include="Views\Home\font-awesome-4.1.0\scss\_icons.scss" />
-    <Content Include="Views\Home\font-awesome-4.1.0\scss\_larger.scss" />
-    <Content Include="Views\Home\font-awesome-4.1.0\scss\_list.scss" />
-    <Content Include="Views\Home\font-awesome-4.1.0\scss\_mixins.scss" />
-    <Content Include="Views\Home\font-awesome-4.1.0\scss\_path.scss" />
-    <Content Include="Views\Home\font-awesome-4.1.0\scss\_rotated-flipped.scss" />
-    <Content Include="Views\Home\font-awesome-4.1.0\scss\_spinning.scss" />
-    <Content Include="Views\Home\font-awesome-4.1.0\scss\_stacked.scss" />
-    <Content Include="Views\Home\font-awesome-4.1.0\scss\_variables.scss" />
-    <Content Include="Views\Home\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Views\Home\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Views\Home\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\font-awesome-4.1.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome-4.1.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome-4.1.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome-4.1.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\font-awesome-4.1.0\less\bordered-pulled.less" />
+    <Content Include="Content\font-awesome-4.1.0\less\core.less" />
+    <Content Include="Content\font-awesome-4.1.0\less\fixed-width.less" />
+    <Content Include="Content\font-awesome-4.1.0\less\font-awesome.less" />
+    <Content Include="Content\font-awesome-4.1.0\less\icons.less" />
+    <Content Include="Content\font-awesome-4.1.0\less\larger.less" />
+    <Content Include="Content\font-awesome-4.1.0\less\list.less" />
+    <Content Include="Content\font-awesome-4.1.0\less\mixins.less" />
+    <Content Include="Content\font-awesome-4.1.0\less\path.less" />
+    <Content Include="Content\font-awesome-4.1.0\less\rotated-flipped.less" />
+    <Content Include="Content\font-awesome-4.1.0\less\spinning.less" />
+    <Content Include="Content\font-awesome-4.1.0\less\stacked.less" />
+    <Content Include="Content\font-awesome-4.1.0\less\variables.less" />
+    <Content Include="Content\font-awesome-4.1.0\scss\font-awesome.scss" />
+    <Content Include="Content\font-awesome-4.1.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\font-awesome-4.1.0\scss\_core.scss" />
+    <Content Include="Content\font-awesome-4.1.0\scss\_fixed-width.scss" />
+    <Content Include="Content\font-awesome-4.1.0\scss\_icons.scss" />
+    <Content Include="Content\font-awesome-4.1.0\scss\_larger.scss" />
+    <Content Include="Content\font-awesome-4.1.0\scss\_list.scss" />
+    <Content Include="Content\font-awesome-4.1.0\scss\_mixins.scss" />
+    <Content Include="Content\font-awesome-4.1.0\scss\_path.scss" />
+    <Content Include="Content\font-awesome-4.1.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\font-awesome-4.1.0\scss\_spinning.scss" />
+    <Content Include="Content\font-awesome-4.1.0\scss\_stacked.scss" />
+    <Content Include="Content\font-awesome-4.1.0\scss\_variables.scss" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutIndex.cshtml" />
+    <Content Include="Views\Shared\_LayoutRegister.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
