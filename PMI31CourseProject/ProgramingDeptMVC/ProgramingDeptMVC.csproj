@@ -126,6 +126,23 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\css\bootstrapValidator.css" />
+    <Content Include="Content\css\bootstrapValidator.min.css" />
+    <Content Include="Content\css\business-casual.css" />
+    <Content Include="Content\img\dev.jpg" />
+    <Content Include="Content\img\intro-pic.jpg" />
+    <Content Include="Content\img\ls.jpg" />
+    <Content Include="Content\img\me.jpg" />
+    <Content Include="Content\img\pac.jpg" />
+    <Content Include="Content\img\park.jpg" />
+    <Content Include="Content\img\slide-1.jpg" />
+    <Content Include="Content\img\slide-2.jpg" />
+    <Content Include="Content\img\slide-3.jpg" />
+    <Content Include="Content\img\vik.jpg" />
+    <Content Include="Content\js\bootstrapValidator.js" />
+    <Content Include="Content\js\bootstrapValidator.min.js" />
+    <Content Include="Content\js\javaScript.js" />
+    <Content Include="Content\js\jquery.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\back.gif" />
     <Content Include="Content\background.jpg" />
@@ -216,6 +233,24 @@
   <ItemGroup>
     <Content Include="Views\Shared\_LayoutIndex.cshtml" />
     <Content Include="Views\Shared\_LayoutRegister.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutPersonal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Personal.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutAbout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\About.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutContact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

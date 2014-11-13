@@ -15,41 +15,57 @@ namespace ProgramingDeptMVC.Controllers
         //
         // GET: /Home/
         ManageUsers manager = new ManageUsers();
-        public ActionResult Index()
+        public ViewResult Index()
         {
             @ViewBag.Title = "Головна";
             return View();
         }
-        public ActionResult Register()
+        public ViewResult Register()
         {
             ViewBag.Title = "Register";
             return View();
         }
-        [HttpPost]
-        public string Index(LoginAction resultOfLoginAction)
-        {
 
-            string message = string.Empty;
+        public ViewResult Personal()
+        {
+            ViewBag.Title = "Юра Плоский";
+            return View();
+        }
+
+        public ViewResult About()
+        {
+            return View();
+        }
+
+        public ViewResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(LoginAction resultOfLoginAction)
+        {
             switch (resultOfLoginAction.AuthenticationCheck(manager))
             {
                 case AuthenticationStatus.Graduate:
-                    message = "Вітаємо! Ви увійшли як випускник.";
+                    return Redirect(@"Home\Personal");
                     break;
                 case AuthenticationStatus.Lecturer:
-                    message = "Вітаємо! Ви увійшли як викладач.";
+                    return Redirect(@"Home\Personal");
                     break;
                 case AuthenticationStatus.Administrator:
-                    message = "Вітаємо! Ви увійшли як адміністратор.";
+                    return Redirect(@"Home\Personal");
                     break;
                 case AuthenticationStatus.NoUser:
-                    message = "На жаль, користувача з таким ім'ям не зареєстровано.";
+                    return Redirect(@"#");
                     break;
                 case AuthenticationStatus.WrongPassword:
-                    message = "Ви ввели не вірний пароль.";
+                    return Redirect(@"#");
                     break;
-            }
-            return message;
+                default:
+                    return Redirect(@"#");
 
+            }
         }
 
         [HttpPost]
