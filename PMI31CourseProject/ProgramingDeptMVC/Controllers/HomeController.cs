@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using PMI31CourseProject;
-using ProgramingDeptMVC.Models;
 using DAL;
 using BLL;
 namespace ProgramingDeptMVC.Controllers
