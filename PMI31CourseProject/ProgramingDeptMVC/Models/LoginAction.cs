@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web;
 using PMI31CourseProject;
 using PMI31CourseProject.Repository;
-
-namespace BLL
+using BLL;
+namespace ProgramingDeptMVC.Models
 {
     public class LoginAction
     {
         public string username { get; set; }
-        public string password { get; set; }
+        public string  password { get; set; }
 
         public LoginAction()
         {
