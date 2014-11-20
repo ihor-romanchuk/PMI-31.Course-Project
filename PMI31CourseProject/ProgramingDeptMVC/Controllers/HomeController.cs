@@ -5,9 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using PMI31CourseProject;
-using ProgramingDeptMVC.Models;
 using DAL;
 using BLL;
+using ProgramingDeptMVC.Models;
+
 namespace ProgramingDeptMVC.Controllers
 {
     public class HomeController: Controller
@@ -15,7 +16,7 @@ namespace ProgramingDeptMVC.Controllers
         //
         // GET: /Home/
         ManageUsers manager = new ManageUsers();
-        public ViewResult Index()
+        public ViewResult SignIn()
         {
             @ViewBag.Title = "Головна";
             return View();
@@ -42,19 +43,64 @@ namespace ProgramingDeptMVC.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Index(LoginAction resultOfLoginAction)
+        public ViewResult PersonalM()
         {
-            switch (resultOfLoginAction.AuthenticationCheck(manager))
+            ViewBag.Title = "Маркіян Фостяк";
+            return View();
+        }
+
+        public ViewResult AboutM()
+        {
+            return View();
+        }
+
+        public ViewResult ContactM()
+        {
+            return View();
+        }
+
+        public ViewResult Index()
+        {
+            return View();
+        }
+
+        public ViewResult HomePage()
+        {
+            return View();
+        }
+
+        public ViewResult News()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SignIn(LoginModel resultOfLogin)
+        {
+            switch (resultOfLogin.AuthenticationCheck(manager))
             {
                 case AuthenticationStatus.Graduate:
-                    return Redirect(@"Home\Personal");
+                    return Redirect(@"HomePage");
                     break;
                 case AuthenticationStatus.Lecturer:
-                    return Redirect(@"Home\Personal");
+                    if (resultOfLogin.username == "yuran")
+                    {
+                        return Redirect(@"HomePage");
+                    }
+                    else
+                    {
+                        return Redirect(@"HomePage");
+                    }
                     break;
                 case AuthenticationStatus.Administrator:
-                    return Redirect(@"Home\Personal");
+                if (resultOfLogin.username == "yuran")
+                    {
+                        return Redirect(@"HomePage");
+                    }
+                    else
+                    {
+                        return Redirect(@"HomePage");
+                    }
                     break;
                 case AuthenticationStatus.NoUser:
                     return Redirect(@"#");
@@ -69,22 +115,23 @@ namespace ProgramingDeptMVC.Controllers
         }
 
         [HttpPost]
-        public string Register(RegistrationAction registration)
+        public ActionResult Register(RegistrationModel registration)
         {
-            string message = string.Empty;
+            
             switch (registration.RegistrationCheck(manager))
             {
                 case RegistrationStatus.RegistratedGraduate:
-                    message = "Ви зареєструвалися як випускник.";
+                    return Redirect(@"Home\Personal");
                     break;
                 case RegistrationStatus.RegistratedLecturer:
-                    message = "Ви зареєструвалися як викладач.";
+                    return Redirect(@"Home\Personal");
                     break;
                 case RegistrationStatus.Failed:
-                    message = "Користувач з таким іменем уже зарестрований.";
+                    return Redirect(@"#");
                     break;
+                default:
+                    return Redirect(@"#");
             }
-            return message;
         }
     }
 }
