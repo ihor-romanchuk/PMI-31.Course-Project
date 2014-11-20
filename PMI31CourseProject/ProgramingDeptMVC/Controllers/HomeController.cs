@@ -74,6 +74,31 @@ namespace ProgramingDeptMVC.Controllers
             return View();
         }
 
+        public ViewResult History()
+        {
+            return View();
+        }
+
+        public ViewResult Gig()
+        {
+            return View();
+        }
+
+        public ViewResult NewsHome()
+        {
+            return View();
+        }
+
+        public ViewResult HistoryHome()
+        {
+            return View();
+        }
+
+        public ViewResult GigHome()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult SignIn(LoginModel resultOfLogin)
         {
@@ -121,10 +146,10 @@ namespace ProgramingDeptMVC.Controllers
             switch (registration.RegistrationCheck(manager))
             {
                 case RegistrationStatus.RegistratedGraduate:
-                    return Redirect(@"Home\Personal");
+                    return Redirect(@"HomePage");
                     break;
                 case RegistrationStatus.RegistratedLecturer:
-                    return Redirect(@"Home\Personal");
+                    return Redirect(@"HomePage");
                     break;
                 case RegistrationStatus.Failed:
                     return Redirect(@"#");
