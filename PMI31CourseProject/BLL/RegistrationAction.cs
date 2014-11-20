@@ -25,7 +25,7 @@ namespace BLL
             {
                 regUser = new UserOfSite();
                 regUser.login = username;
-                regUser.password = password;
+                regUser.password = Security.HashPassword(password);
                 string roleName = string.Empty;
                 if (this.role == Role.Graduate)
                 {

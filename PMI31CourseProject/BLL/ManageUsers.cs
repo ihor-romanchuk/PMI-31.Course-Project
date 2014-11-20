@@ -37,7 +37,7 @@ namespace BLL
             {
                 var contactEntity = unitOfWork.ContactRepository.GetById(id);
                 contactEntity.login = user.login;
-                contactEntity.password = user.password;
+                contactEntity.password = Security.HashPassword(user.password);
                 contactEntity.role = user.role;
                 unitOfWork.Save();
             }
