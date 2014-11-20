@@ -100,7 +100,7 @@ namespace ProgramingDeptMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignIn(LoginModel resultOfLogin)
+        public ActionResult SignIn(BLL.LoginAction resultOfLogin)
         {
             switch (resultOfLogin.AuthenticationCheck(manager))
             {
@@ -140,7 +140,7 @@ namespace ProgramingDeptMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(RegistrationModel registration)
+        public ActionResult Register(BLL.RegistrationAction registration)
         {
             
             switch (registration.RegistrationCheck(manager))
