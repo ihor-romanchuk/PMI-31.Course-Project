@@ -19,7 +19,7 @@ body {
     margin: 15% auto;
 }
 #top{
-      background: url(/Content/img/background.jpg) no-repeat center center scroll;
+      background: url(/Content/img/background_old.jpg) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -254,4 +254,11 @@ hr.small {
 
 footer {
     padding: 100px 0;
+}
+
+h3 a {
+    color: #fff;
+}
+h3 a:hover {
+    color: #fff;
 }
