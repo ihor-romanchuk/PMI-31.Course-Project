@@ -29,7 +29,7 @@ namespace BLL
             UserOfSite loggingUser = users.GetById(username);
             if (loggingUser != null)
             {
-                if (loggingUser.password != this.password)
+                if (loggingUser.password != Security.HashPassword(this.password))
                 {
                     return AuthenticationStatus.WrongPassword;
                 }
