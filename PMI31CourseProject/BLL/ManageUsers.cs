@@ -99,7 +99,7 @@ namespace BLL
             return users;
         }
 
-        public List<Lecturer> GetAllUsersByGraduateName(string name)
+        public List<Lecturer> GetAllUsersByLecturerName(string name)
         {
             List<Lecturer> users = new List<Lecturer>();
             using (UnitOfWork<Lecturer> unitOfWork = new UnitOfWork<Lecturer>())
@@ -110,7 +110,7 @@ namespace BLL
             return users;
         }
 
-        public List<Lecturer> GetAllUsersByGraduateSurName(string surName)
+        public List<Lecturer> GetAllUsersByLecturerSurName(string surName)
         {
             List<Lecturer> users = new List<Lecturer>();
             using (UnitOfWork<Lecturer> unitOfWork = new UnitOfWork<Lecturer>())
@@ -121,7 +121,7 @@ namespace BLL
             return users;
         }
 
-        public List<Lecturer> GetAllUsersByGraduateSubject(string subject)
+        public List<Lecturer> GetAllUsersByLecturerSubject(string subject)
         {
             List<Lecturer> users = new List<Lecturer>();
             using (UnitOfWork<Lecturer> unitOfWork = new UnitOfWork<Lecturer>())
