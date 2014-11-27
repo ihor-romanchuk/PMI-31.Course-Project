@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PMI31CourseProject;
 using PMI31CourseProject.Repository;
 using DAL;
+using System.Linq.Expressions;
 
 namespace BLL
 {
@@ -63,6 +64,72 @@ namespace BLL
                 user = unitOfWork.ContactRepository.GetById(id);
             }
             return user;
+        }
+
+        public List<Graduate> GetAllUsersByGraduateYear(System.DateTime year)
+        {
+            List<Graduate> users = new List<Graduate>();
+            using (UnitOfWork<Graduate> unitOfWork = new UnitOfWork<Graduate>())
+            {
+                Expression<Func<Graduate, bool>> expr = G => G.year_of_graduation == year;
+                users = unitOfWork.ContactRepository.GetMany(expr).ToList<Graduate>();
+            }
+            return users;
+        }
+
+        public List<Graduate> GetAllUsersByGraduateName(string name)
+        {
+            List<Graduate> users = new List<Graduate>();
+            using (UnitOfWork<Graduate> unitOfWork = new UnitOfWork<Graduate>())
+            {
+                Expression<Func<Graduate, bool>> expr = G => G.name == name;
+                users = unitOfWork.ContactRepository.GetMany(expr).ToList<Graduate>();
+            }
+            return users;
+        }
+
+        public List<Graduate> GetAllUsersByGraduateSurName(string surName)
+        {
+            List<Graduate> users = new List<Graduate>();
+            using (UnitOfWork<Graduate> unitOfWork = new UnitOfWork<Graduate>())
+            {
+                Expression<Func<Graduate, bool>> expr = G => G.surname == surName;
+                users = unitOfWork.ContactRepository.GetMany(expr).ToList<Graduate>();
+            }
+            return users;
+        }
+
+        public List<Lecturer> GetAllUsersByGraduateName(string name)
+        {
+            List<Lecturer> users = new List<Lecturer>();
+            using (UnitOfWork<Lecturer> unitOfWork = new UnitOfWork<Lecturer>())
+            {
+                Expression<Func<Lecturer, bool>> expr = G => G.name == name;
+                users = unitOfWork.ContactRepository.GetMany(expr).ToList<Lecturer>();
+            }
+            return users;
+        }
+
+        public List<Lecturer> GetAllUsersByGraduateSurName(string surName)
+        {
+            List<Lecturer> users = new List<Lecturer>();
+            using (UnitOfWork<Lecturer> unitOfWork = new UnitOfWork<Lecturer>())
+            {
+                Expression<Func<Lecturer, bool>> expr = G => G.surname == surName;
+                users = unitOfWork.ContactRepository.GetMany(expr).ToList<Lecturer>();
+            }
+            return users;
+        }
+
+        public List<Lecturer> GetAllUsersByGraduateSubject(string subject)
+        {
+            List<Lecturer> users = new List<Lecturer>();
+            using (UnitOfWork<Lecturer> unitOfWork = new UnitOfWork<Lecturer>())
+            {
+                Expression<Func<Lecturer, bool>> expr = G => G.subject == subject;
+                users = unitOfWork.ContactRepository.GetMany(expr).ToList<Lecturer>();
+            }
+            return users;
         }
     }
 }

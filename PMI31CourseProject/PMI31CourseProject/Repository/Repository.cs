@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.Entity;
 using System.Configuration;
+using System.Linq.Expressions;
 
 namespace PMI31CourseProject.Repository
 {
@@ -43,6 +44,11 @@ namespace PMI31CourseProject.Repository
         public virtual IEnumerable<T> GetAll()
         {
             return dbSet.ToList();
+        }
+
+        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> predicat)
+        {
+            return dbSet.Where(predicat).ToList();
         }
     }
 }
