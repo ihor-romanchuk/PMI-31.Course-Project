@@ -109,8 +109,6 @@ namespace ProgramingDeptMVC.Controllers
         [HttpPost]
         public ActionResult SignIn(BLL.LoginAction resultOfLogin)
         {
-            try
-            {
 
                 switch (resultOfLogin.AuthenticationCheck(manager))
                 {
@@ -133,11 +131,6 @@ namespace ProgramingDeptMVC.Controllers
                         return Redirect(@"#");
 
                 }
-            }
-            catch (Exception exc)
-            {
-                return Redirect(@"HomePage");
-            }
         }
 
         [HttpPost]
