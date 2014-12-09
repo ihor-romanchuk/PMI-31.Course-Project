@@ -136,7 +136,7 @@ namespace ProgramingDeptMVC.Controllers
             }
             catch (Exception exc)
             {
-                return Redirect(@"SignIn");
+                return Redirect(@"HomePage");
             }
         }
 
