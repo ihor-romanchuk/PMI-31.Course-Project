@@ -1,4 +1,5 @@
-$(document).ready(function() {
+$(document).ready(function () {
+    newYearSelected();
     $('.registerForm').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {
@@ -34,14 +35,14 @@ $(document).ready(function() {
                     }
                 }
             },
-             password: {
+            password: {
                 validators: {
                     notEmpty: {
                         message: 'Введіть пароль'
                     }
                 }
             },
-             secondPassword: {
+            secondPassword: {
                 validators: {
                     notEmpty: {
                         message: 'Введіть пароль'
@@ -54,7 +55,7 @@ $(document).ready(function() {
             }
         }
     });
-  $('#loginform').bootstrapValidator({
+    $('#loginform').bootstrapValidator({
         message: 'This value is not valid',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -89,14 +90,14 @@ $(document).ready(function() {
                     }
                 }
             },
-             password: {
+            password: {
                 validators: {
                     notEmpty: {
                         message: 'Введіть пароль'
                     }
                 }
             },
-             secondPassword: {
+            secondPassword: {
                 validators: {
                     notEmpty: {
                         message: 'Введіть пароль'
@@ -110,3 +111,23 @@ $(document).ready(function() {
         }
     });
 });
+
+function newYearSelected() {
+    $('#graduates').fadeOut();
+    $('#graduates').empty();
+    $('#graduates').append('<th>Випускник</th>');
+    $.ajax({
+        url: '/Home/Changed?Year=' + $('#year').val(),
+        type: 'post',
+        dataType: 'json',
+        success: function (data) {
+            $.each(data, function (key, val) {
+                var person = '<tr><td>' + val.Name + '</td> <td>' + val.LastName + '</td> </tr>';
+                $("#graduates").append(person);
+            });
+            $('#graduates').fadeIn(2000);
+        },
+    });
+};
+
+

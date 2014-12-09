@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using PMI31CourseProject;
@@ -11,7 +13,7 @@ using ProgramingDeptMVC.Models;
 
 namespace ProgramingDeptMVC.Controllers
 {
-    public class HomeController: Controller
+    public class HomeController : Controller
     {
         //
         // GET: /Home/
@@ -99,64 +101,79 @@ namespace ProgramingDeptMVC.Controllers
             return View();
         }
 
+        public ViewResult FindGraduatesByYear()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult SignIn(BLL.LoginAction resultOfLogin)
         {
-            switch (resultOfLogin.AuthenticationCheck(manager))
+            try
             {
-                case AuthenticationStatus.Graduate:
-                    return Redirect(@"HomePage");
-                    break;
-                case AuthenticationStatus.Lecturer:
-                    if (resultOfLogin.username == "yuran")
-                    {
-                        return Redirect(@"HomePage");
-                    }
-                    else
-                    {
-                        return Redirect(@"HomePage");
-                    }
-                    break;
-                case AuthenticationStatus.Administrator:
-                if (resultOfLogin.username == "yuran")
-                    {
-                        return Redirect(@"HomePage");
-                    }
-                    else
-                    {
-                        return Redirect(@"HomePage");
-                    }
-                    break;
-                case AuthenticationStatus.NoUser:
-                    return Redirect(@"#");
-                    break;
-                case AuthenticationStatus.WrongPassword:
-                    return Redirect(@"#");
-                    break;
-                default:
-                    return Redirect(@"#");
 
+                switch (resultOfLogin.AuthenticationCheck(manager))
+                {
+                    case AuthenticationStatus.Graduate:
+                        return Redirect(@"HomePage");
+                        break;
+                    case AuthenticationStatus.Lecturer:
+                        return Redirect(@"HomePage");
+                        break;
+                    case AuthenticationStatus.Administrator:
+                        return Redirect(@"HomePage");
+                        break;
+                    case AuthenticationStatus.NoUser:
+                        return Redirect(@"#");
+                        break;
+                    case AuthenticationStatus.WrongPassword:
+                        return Redirect(@"#");
+                        break;
+                    default:
+                        return Redirect(@"#");
+
+                }
+            }
+            catch (Exception exc)
+            {
+                return Redirect(@"SignIn");
             }
         }
 
         [HttpPost]
         public ActionResult Register(BLL.RegistrationAction registration)
         {
-            
-            switch (registration.RegistrationCheck(manager))
+            try
             {
-                case RegistrationStatus.RegistratedGraduate:
-                    return Redirect(@"HomePage");
-                    break;
-                case RegistrationStatus.RegistratedLecturer:
-                    return Redirect(@"HomePage");
-                    break;
-                case RegistrationStatus.Failed:
-                    return Redirect(@"#");
-                    break;
-                default:
-                    return Redirect(@"#");
+                switch (registration.RegistrationCheck(manager))
+                {
+                    case RegistrationStatus.RegistratedGraduate:
+                        return Redirect(@"HomePage");
+                        break;
+                    case RegistrationStatus.RegistratedLecturer:
+                        return Redirect(@"HomePage");
+                        break;
+                    case RegistrationStatus.Failed:
+                        return Redirect(@"#");
+                        break;
+                    default:
+                        return Redirect(@"#");
+                }
             }
+            catch (Exception exc)
+            {
+                return Redirect(@"Register");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Changed(string Year)
+        {
+            TestGraduee test = new TestGraduee() {Name = "Yuran", LastName = "Ploskis"};
+            List<TestGraduee> temp = new List<TestGraduee>();
+            temp.Add(test);
+            int yearId = Convert.ToInt32(Year);
+            return Json(temp.ToList(), JsonRequestBehavior.AllowGet);
         }
     }
 }
