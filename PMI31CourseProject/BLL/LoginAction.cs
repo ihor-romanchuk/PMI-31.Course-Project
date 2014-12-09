@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using PMI31CourseProject;
 using PMI31CourseProject.Repository;
+using ProjectDatabase;
 
 namespace BLL
 {
@@ -26,22 +27,22 @@ namespace BLL
 
         public AuthenticationStatus AuthenticationCheck(ManageUsers users)
         {
-            UserOfSite loggingUser = users.GetById(username);
+            User loggingUser = users.GetById(username);
             if (loggingUser != null)
             {
-                if (loggingUser.password != Security.HashPassword(this.password))
+                if (loggingUser.Password != Security.HashPassword(this.password))
                 {
                     return AuthenticationStatus.WrongPassword;
                 }
-                if (loggingUser.role == "admin")
+                if (loggingUser.Role == "admin")
                 {
                     return AuthenticationStatus.Administrator;
                 }
-                if (loggingUser.role == "graduate")
+                if (loggingUser.Role == "graduate")
                 {
                     return AuthenticationStatus.Graduate;
                 }
-                if (loggingUser.role == "lecturer")
+                if (loggingUser.Role == "lecturer")
                 {
                     return AuthenticationStatus.Lecturer;
                 }

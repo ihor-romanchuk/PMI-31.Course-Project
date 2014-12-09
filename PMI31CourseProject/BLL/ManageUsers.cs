@@ -7,24 +7,25 @@ using PMI31CourseProject;
 using PMI31CourseProject.Repository;
 using DAL;
 using System.Linq.Expressions;
+using ProjectDatabase;
 
 namespace BLL
 {
     public class ManageUsers
     {
-        public IEnumerable<UserOfSite> GetContacts()
+        public IEnumerable<User> GetContacts()
         {
-            IEnumerable<UserOfSite> users;
-            using (UnitOfWork<UserOfSite> unitOfWork = new UnitOfWork<UserOfSite>())
+            IEnumerable<User> users;
+            using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
                 users = unitOfWork.ContactRepository.GetAll();
             }
             return users;
         }
 
-        public bool AddUser(UserOfSite user)
+        public bool AddUser(User user)
         {
-            using (UnitOfWork<UserOfSite> unitOfWork = new UnitOfWork<UserOfSite>())
+            using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
                 unitOfWork.ContactRepository.Add(user);
                 unitOfWork.Save();
@@ -32,14 +33,16 @@ namespace BLL
             return true;
         }
 
-        public bool UpdateUser(UserOfSite user, string id)
+        public bool UpdateUser(User user, string id)
         {
-            using (UnitOfWork<UserOfSite> unitOfWork = new UnitOfWork<UserOfSite>())
+            using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
                 var contactEntity = unitOfWork.ContactRepository.GetById(id);
-                contactEntity.login = user.login;
-                contactEntity.password = Security.HashPassword(user.password);
-                contactEntity.role = user.role;
+                contactEntity.Login = user.Login;
+                contactEntity.Password = Security.HashPassword(user.Password);
+                contactEntity.Role = user.Role;
+                contactEntity.FullName = user.FullName;
+                contactEntity.IsRegistered = user.IsRegistered;
                 unitOfWork.Save();
             }
             return true;
@@ -47,87 +50,32 @@ namespace BLL
 
         public bool DeleteUser(string id)
         {
-            using (UnitOfWork<UserOfSite> unitOfWork = new UnitOfWork<UserOfSite>())
+            using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
-                UserOfSite user = unitOfWork.ContactRepository.GetById(id);
+                User user = unitOfWork.ContactRepository.GetById(id);
                 unitOfWork.ContactRepository.Delete(user);
                 unitOfWork.Save();
             }
             return true;
         }
 
-        public UserOfSite GetById(string id)
+        public User GetById(string id)
         {
-            UserOfSite user;
-            using (UnitOfWork<UserOfSite> unitOfWork = new UnitOfWork<UserOfSite>())
+            User user;
+            using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
                 user = unitOfWork.ContactRepository.GetById(id);
             }
             return user;
         }
 
-        public List<Graduate> GetAllUsersByGraduateYear(System.DateTime year)
+        public List<User> GetAllUsersByGraduateYear(int year)
         {
-            List<Graduate> users = new List<Graduate>();
-            using (UnitOfWork<Graduate> unitOfWork = new UnitOfWork<Graduate>())
+            List<User> users = new List<User>();
+            using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
-                Expression<Func<Graduate, bool>> expr = G => G.year_of_graduation == year;
-                users = unitOfWork.ContactRepository.GetMany(expr).ToList<Graduate>();
-            }
-            return users;
-        }
-
-        public List<Graduate> GetAllUsersByGraduateName(string name)
-        {
-            List<Graduate> users = new List<Graduate>();
-            using (UnitOfWork<Graduate> unitOfWork = new UnitOfWork<Graduate>())
-            {
-                Expression<Func<Graduate, bool>> expr = G => G.name == name;
-                users = unitOfWork.ContactRepository.GetMany(expr).ToList<Graduate>();
-            }
-            return users;
-        }
-
-        public List<Graduate> GetAllUsersByGraduateSurName(string surName)
-        {
-            List<Graduate> users = new List<Graduate>();
-            using (UnitOfWork<Graduate> unitOfWork = new UnitOfWork<Graduate>())
-            {
-                Expression<Func<Graduate, bool>> expr = G => G.surname == surName;
-                users = unitOfWork.ContactRepository.GetMany(expr).ToList<Graduate>();
-            }
-            return users;
-        }
-
-        public List<Lecturer> GetAllUsersByLecturerName(string name)
-        {
-            List<Lecturer> users = new List<Lecturer>();
-            using (UnitOfWork<Lecturer> unitOfWork = new UnitOfWork<Lecturer>())
-            {
-                Expression<Func<Lecturer, bool>> expr = G => G.name == name;
-                users = unitOfWork.ContactRepository.GetMany(expr).ToList<Lecturer>();
-            }
-            return users;
-        }
-
-        public List<Lecturer> GetAllUsersByLecturerSurName(string surName)
-        {
-            List<Lecturer> users = new List<Lecturer>();
-            using (UnitOfWork<Lecturer> unitOfWork = new UnitOfWork<Lecturer>())
-            {
-                Expression<Func<Lecturer, bool>> expr = G => G.surname == surName;
-                users = unitOfWork.ContactRepository.GetMany(expr).ToList<Lecturer>();
-            }
-            return users;
-        }
-
-        public List<Lecturer> GetAllUsersByLecturerSubject(string subject)
-        {
-            List<Lecturer> users = new List<Lecturer>();
-            using (UnitOfWork<Lecturer> unitOfWork = new UnitOfWork<Lecturer>())
-            {
-                Expression<Func<Lecturer, bool>> expr = G => G.subject == subject;
-                users = unitOfWork.ContactRepository.GetMany(expr).ToList<Lecturer>();
+                Expression<Func<User, bool>> expr = G => G.UserInfo.GraduateInfo.EntranceYear == year;
+                users = unitOfWork.ContactRepository.GetMany(expr).ToList<User>();
             }
             return users;
         }

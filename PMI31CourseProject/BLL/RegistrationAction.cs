@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using PMI31CourseProject;
 using PMI31CourseProject.Repository;
+using ProjectDatabase;
 namespace BLL
 {
     public class RegistrationAction
@@ -11,11 +12,12 @@ namespace BLL
         public string username { get; set; }
         public string password { get; set; }
         public string email { get; set; }
+        public string fullName { get; set; }
         public Role role { get; set; }
 
         public RegistrationStatus RegistrationCheck(ManageUsers users)
         {
-            UserOfSite regUser;
+            User regUser;
             regUser = users.GetById(username);
             if (regUser != null)
             {
@@ -23,9 +25,10 @@ namespace BLL
             }
             else
             {
-                regUser = new UserOfSite();
-                regUser.login = username;
-                regUser.password = Security.HashPassword(password);
+                regUser = new User();
+                regUser.Login = username;
+                regUser.Password = Security.HashPassword(password);
+                regUser.FullName = fullName;
                 string roleName = string.Empty;
                 if (this.role == Role.Graduate)
                 {
@@ -35,7 +38,7 @@ namespace BLL
                 {
                     roleName = "lecturer";
                 }
-                regUser.role = roleName;
+                regUser.Role = roleName;
                 users.AddUser(regUser);
                 if (this.role == Role.Graduate)
                 {
