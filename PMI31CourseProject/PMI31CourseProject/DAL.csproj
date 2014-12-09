@@ -62,17 +62,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContactInfo.cs" />
-    <Compile Include="Course_ProjectEntities.cs" />
-    <Compile Include="GraduateInfo.cs" />
-    <Compile Include="Photo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ConnectRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
-    <Compile Include="Teacher.cs" />
     <Compile Include="UnitOfWork.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -99,6 +92,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectDatabase\ProjectDatabase.csproj">
+      <Project>{c991787f-04ee-42cb-bb1f-b0771c9a77ec}</Project>
+      <Name>ProjectDatabase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
