@@ -103,7 +103,6 @@ namespace ProgramingDeptMVC.Controllers
 
         public ViewResult FindGraduatesByYear()
         {
-            ViewBag.StartYear=
             return View();
         }
 
