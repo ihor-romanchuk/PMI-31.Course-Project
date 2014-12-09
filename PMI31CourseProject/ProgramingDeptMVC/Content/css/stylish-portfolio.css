@@ -19,7 +19,7 @@ body {
     margin: 15% auto;
 }
 #top{
-      background: url(/Content/img/background_old.jpg) no-repeat center center scroll;
+      background: url(/Content/img/back.gif) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -34,7 +34,18 @@ body {
 
 }
 .text-vertical-center {
-    background: url(/Content/img/back.gif) no-repeat center center scroll;
+    background: url(/Content/img/blur_back.jpg) no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.text-vertical-center-bott {
+    background: url(/Content/img/pano.jpg) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -207,7 +218,19 @@ hr.small {
     width: 100%;
     height: 400px;
     color: #fff;
-    background: url(/Content/img/bg.jpg) no-repeat center center scroll;
+    background: url(/Content/img/pano.jpg) no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.callout_map {
+    display: table;
+    width: 100%;
+    height: 400px;
+    color: #fff;
+    background: url(/Content/img/map.png) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;

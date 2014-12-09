@@ -205,8 +205,6 @@
     <Content Include="Content\js\javaScript.js" />
     <Content Include="Content\js\jquery.js" />
     <Content Include="Global.asax" />
-    <Content Include="Content\back.gif" />
-    <Content Include="Content\background.jpg" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\stylish-portfolio.css" />
