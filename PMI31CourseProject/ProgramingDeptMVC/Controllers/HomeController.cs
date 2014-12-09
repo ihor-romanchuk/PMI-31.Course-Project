@@ -103,12 +103,15 @@ namespace ProgramingDeptMVC.Controllers
 
         public ViewResult FindGraduatesByYear()
         {
+            ViewBag.StartYear=
             return View();
         }
 
         [HttpPost]
         public ActionResult SignIn(BLL.LoginAction resultOfLogin)
         {
+            try
+            {
 
                 switch (resultOfLogin.AuthenticationCheck(manager))
                 {
@@ -131,6 +134,11 @@ namespace ProgramingDeptMVC.Controllers
                         return Redirect(@"#");
 
                 }
+            }
+            catch (Exception exc)
+            {
+                return Redirect(@"HomePage");
+            }
         }
 
         [HttpPost]
