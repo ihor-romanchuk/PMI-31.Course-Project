@@ -20,7 +20,7 @@ namespace ProgramingDeptMVC.Controllers
         ManageUsers manager = new ManageUsers();
         public ViewResult SignIn()
         {
-            @ViewBag.Title = "Головна";
+            ViewBag.Title = "Головна";
             return View();
         }
         public ViewResult Register()
@@ -169,11 +169,8 @@ namespace ProgramingDeptMVC.Controllers
         [HttpPost]
         public ActionResult Changed(string Year)
         {
-            TestGraduee test = new TestGraduee() {Name = "Yuran", LastName = "Ploskis"};
-            List<TestGraduee> temp = new List<TestGraduee>();
-            temp.Add(test);
             int yearId = Convert.ToInt32(Year);
-            return Json(temp.ToList(), JsonRequestBehavior.AllowGet);
+            return Json(manager.GetAllUsersByGraduateYear(yearId), JsonRequestBehavior.AllowGet);
         }
     }
 }
