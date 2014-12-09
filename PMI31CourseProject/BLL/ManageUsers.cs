@@ -33,11 +33,11 @@ namespace BLL
             return true;
         }
 
-        public bool UpdateUser(User user, string id)
+        public bool UpdateUser(User user, string login)
         {
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
-                var contactEntity = unitOfWork.ContactRepository.GetById(id);
+                var contactEntity = unitOfWork.ContactRepository.GetById(GetIdByLogin(login));
                 contactEntity.Login = user.Login;
                 contactEntity.Password = Security.HashPassword(user.Password);
                 contactEntity.Role = user.Role;
@@ -48,23 +48,36 @@ namespace BLL
             return true;
         }
 
-        public bool DeleteUser(string id)
+        public bool DeleteUser(string login)
         {
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
-                User user = unitOfWork.ContactRepository.GetById(id);
+                User user = unitOfWork.ContactRepository.GetById(GetIdByLogin(login));
                 unitOfWork.ContactRepository.Delete(user);
                 unitOfWork.Save();
             }
             return true;
         }
 
-        public User GetById(string id)
+        private int GetIdByLogin(string login)
+        {
+            int id;
+            using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
+            {
+                Expression<Func<User, bool>> expr = G => G.Login == login;
+                var temp = unitOfWork.ContactRepository.GetMany(expr).ToList();
+                if(temp.Count == 0) id = -1; else
+                    id = temp[0].Id;
+            }
+            return id;
+        }
+
+        public User GetById(string login)
         {
             User user;
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
-                user = unitOfWork.ContactRepository.GetById(id);
+                user = unitOfWork.ContactRepository.GetById(GetIdByLogin(login));
             }
             return user;
         }
