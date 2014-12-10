@@ -7,14 +7,42 @@ using PMI31CourseProject.Repository;
 using ProjectDatabase;
 namespace BLL
 {
+     /// <summary>
+    /// class Registration Action
+    /// </summary>
     public class RegistrationAction
     {
+        /// <summary>
+        /// user name of class RegistrationAction
+        /// </summary>
         public string username { get; set; }
+        
+        /// <summary>
+        /// password of class RegistrationAction
+        /// </summary>
         public string password { get; set; }
+        
+         /// <summary>
+        /// email of class RegistrationAction
+        /// </summary>
         public string email { get; set; }
+        
+        /// <summary>
+        /// full Name user of class RegistrationAction
+        /// </summary>
         public string fullName { get; set; }
+        
+         /// <summary>
+        /// role user of class RegistrationAction
+        /// </summary>
         public Role role { get; set; }
 
+        
+        /// <summary>
+        /// This method Registration Check users
+        /// </summary>
+        /// <param name="users"></param>
+        /// <returns></returns>
         public RegistrationStatus RegistrationCheck(ManageUsers users)
         {
             User regUser;
