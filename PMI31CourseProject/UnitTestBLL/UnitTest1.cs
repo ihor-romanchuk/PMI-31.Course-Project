@@ -24,14 +24,14 @@ namespace BLLUnitTests
         public void TestMethodRegistrationCheckIfGraduate()
         {
             RegistrationAction testAction = new RegistrationAction();
-            testAction.username = "login";
+            testAction.username = "login1";
             testAction.password = "1111";
             testAction.email = "mmm@gmail.com";
             testAction.fullName = "Name Surnane";
             testAction.role = Role.Graduate;
             ManageUsers testManege = new ManageUsers();
             RegistrationStatus status = testAction.RegistrationCheck(testManege);
-            testManege.DeleteUser("login");
+            testManege.DeleteUser("login1");
             Assert.AreEqual(status, RegistrationStatus.RegistratedGraduate);
         }
 
@@ -39,14 +39,14 @@ namespace BLLUnitTests
         public void TestMethodRegistrationCheckIfLecturer()
         {
             RegistrationAction testAction = new RegistrationAction();
-            testAction.username = "login";
+            testAction.username = "login1";
             testAction.password = "1111";
             testAction.email = "mmm@gmail.com";
             testAction.fullName = "Name Surnane";
             testAction.role = Role.Lecturer;
             ManageUsers testManege = new ManageUsers();
             RegistrationStatus status = testAction.RegistrationCheck(testManege);
-            testManege.DeleteUser("login");
+            testManege.DeleteUser("login1");
             Assert.AreEqual(status, RegistrationStatus.RegistratedLecturer);
         }
     }
@@ -54,7 +54,7 @@ namespace BLLUnitTests
     [TestClass]
     public class UnitTestsForLoginAction
     {
-        [TestMethod]
+       /* [TestMethod]
         public void TestAuthenticationCheckIfAdministrator()
         {
             ManageUsers users = new ManageUsers();
@@ -98,7 +98,7 @@ namespace BLLUnitTests
             loggingUser.Role = "lecturer";
             users.AddUser(loggingUser);
             Assert.AreEqual(AuthenticationStatus.Lecturer, loginAction.AuthenticationCheck(users));
-        }
+        }*/
 
         //[TestMethod, Isolated]
         //public void TestAuthenticationCheckMethodForNoUser()
@@ -227,11 +227,11 @@ namespace BLLUnitTests
             Assert.AreNotEqual(Security.HashPassword(password1), Security.HashPassword(password2));
         }
     }
-    [TestClass]
+   /* [TestClass]
     public class UnitTestsForManageUsers
     {
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestAddUser()
         {
             ManageUsers manageUsers = new ManageUsers();
@@ -240,6 +240,7 @@ namespace BLLUnitTests
             user.Login = "admin";
             user.Password = "1111";
             user.Role = "admin";
+            user.FullName = "fullname";
             bool temp = manageUsers.AddUser(user);
             Assert.IsTrue(manageUsers.GetById("admin")==user);
         }
@@ -255,9 +256,9 @@ namespace BLLUnitTests
             user.Role = "admin";
             bool temp = manageUsers.DeleteUser("admin");
             Assert.IsFalse(manageUsers.GetById("admin") == user);
-        }
+        }*/
 
-         [TestMethod]
+         /*[TestMethod]
          [ExpectedException(typeof(InvalidOperationException))]
          public void ExceptionTestDeleteUser()
          {
@@ -270,9 +271,9 @@ namespace BLLUnitTests
              manageUsers.DeleteUser("admin");
              manageUsers.DeleteUser("admin");
              manageUsers.DeleteUser("admin");
-         }
+         }*/
 
-         [TestMethod]
+        /* [TestMethod]
          public void TestGetById()
          {
              ManageUsers manageUsers = new ManageUsers();
@@ -304,5 +305,5 @@ namespace BLLUnitTests
              user.IsRegistered = true;
              Assert.IsTrue(manage.UpdateUser(user, "Login1"));
          }
-    }
+    }*/
 }
