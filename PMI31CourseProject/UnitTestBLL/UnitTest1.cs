@@ -180,4 +180,62 @@ namespace BLLUnitTests
             Assert.AreNotEqual(Security.HashPassword(password1), Security.HashPassword(password2));
         }
     }
+    [TestClass]
+    public class UnitTestsForManageUsers
+    {
+
+        [TestMethod]
+        public void TestAddUser()
+        {
+            ManageUsers manageUsers = new ManageUsers();
+            User user = new User();
+            user.Id = 1;
+            user.Login = "admin";
+            user.Password = "1111";
+            user.Role = "admin";
+            bool temp = manageUsers.AddUser(user);
+            Assert.IsTrue(manageUsers.GetById("admin")==user);
+        }
+      
+        [TestMethod]
+        public void TestDeleteUser()
+        {
+            ManageUsers manageUsers = new ManageUsers();
+            User user = new User();
+            user.Id = 1;
+            user.Login = "admin";
+            user.Password = "1111";
+            user.Role = "admin";
+            bool temp = manageUsers.DeleteUser("admin");
+            Assert.IsFalse(manageUsers.GetById("admin") == user);
+        }
+
+         [TestMethod]
+         [ExpectedException(typeof(InvalidOperationException))]
+         public void ExceptionTestDeleteUser()
+         {
+             ManageUsers manageUsers = new ManageUsers();
+             User user = new User();
+             user.Id = 1;
+             user.Login = "admin";
+             user.Password = "1111";
+             user.Role = "admin";
+             manageUsers.DeleteUser("admin");
+             manageUsers.DeleteUser("admin");
+             manageUsers.DeleteUser("admin");
+         }
+
+         [TestMethod]
+         public void TestGetById()
+         {
+             ManageUsers manageUsers = new ManageUsers();
+             User user = new User();
+             user.Id = 1;
+             user.Login = "admin";
+             user.Password = "1111";
+             user.Role = "admin";
+             User temp = manageUsers.GetById("admin");
+             Assert.IsTrue(user==temp);
+         }
+    }
 }
