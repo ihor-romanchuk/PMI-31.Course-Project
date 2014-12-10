@@ -128,7 +128,9 @@ namespace BLL
                 Expression<Func<User, bool>> expr = G => G.UserInfo.GraduateInfo.GraduationYear == graduationYear;
                 users = unitOfWork.ContactRepository.GetMany(expr).ToList<User>();
             }
-            return users;
+            List<User> a = new List<User>();
+            a.Add(users[0]);
+            return a;
         }
     }
 }

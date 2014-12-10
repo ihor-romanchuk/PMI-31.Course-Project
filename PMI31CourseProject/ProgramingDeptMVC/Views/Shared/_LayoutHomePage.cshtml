@@ -39,20 +39,6 @@
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li class="sidebar-brand">
                 <a href="#top">КП</a>
-            </li>
-            <li>
-                <a href="#top">Головна</a>
-            </li>
-            <li>
-                <a href="#about">Історія</a>
-            </li>
-            <li>
-                <a href="#services">Цікаве</a>
-            </li>
-            <li>
-                <a href="#portfolio">Новини</a>
-            </li>
-            <li>
                 <a href="Index">Вийти</a>
             </li>
         </ul>
@@ -80,33 +66,42 @@
                 <div class="col-lg-10 col-lg-offset-1">
                     <hr class="small">
                     <div class="row">
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-1 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                            </span>
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                                </span>
+
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                                </span>
                                 <h4>
                                     <strong>Новини</strong>
                                 </h4>
-                                <p>Будьте в крусі того, що ногово на кафедрі.</p>
+                                <p>Будьте в крусі всього ногово на кафедрі.</p>
                                 <a href="~/Home/NewsHome" class="btn btn-light">Новини</a>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-2 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
-                            </span>
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                                </span>
                                 <h4>
                                     <strong>Історія</strong>
                                 </h4>
-                                <p>Дізнайся про те, що було колись.</p>
+                                <p>Дізнайся про те, як і що було колись на кафедрі.</p>
                                 <a href="~/Home/HistoryHome" class="btn btn-light">Історія</a>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-2 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                     <i class="fa fa-circle fa-stack-2x"></i>
@@ -119,20 +114,20 @@
                                 <a href="~/Home/GigHome" class="btn btn-light">Цікаві Публікації</a>
                             </div>
                         </div>
-                         <div class="col-md-3 col-sm-6">
+                        <div class="col-md-2 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-shield fa-stack-1x text-primary"></i>
                                 </span>
                                 <h4>
-                                    <strong>Знайти</strong>
+                                    <strong>Пошук</strong>
                                 </h4>
-                                <p>Зайдіть, щоб знайти своїх одногрупників чи викладачів.</p>
-                                <a href="~/Home/FindGraduateByYear" class="btn btn-light">Увійти</a>
+                                <p>Зайдіть всоїх знайомих на нашій кафедрі.</p>
+                                <a href="~/Home/FindGraduatesByYearHome" class="btn btn-light">Шукати</a>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-2 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                     <i class="fa fa-circle fa-stack-2x"></i>
@@ -141,11 +136,20 @@
                                 <h4>
                                     <strong>Персональна сторінка</strong>
                                 </h4>
-                                <p>Додавайте світлини, цікаві історії та трохи про себе.</p>
+                                <p>Додавайте цікаве про себе.</p>
                                 <a href="Personal" class="btn btn-light">Моя сторінка</a>
                             </div>
                         </div>
-  
+                        <div class="col-md-1 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                                </span>
+
+                            </div>
+                        </div>
+
                     </div>
                     <!-- /.row (nested) -->
                 </div>
@@ -171,22 +175,19 @@
                 <div class="col-lg-12 text-center">
                     <h3>Завідує: Ярошко С.А.</h3>
                     <h3>Телефон: (032) 239-47-57</h3>
-                    <h3>E-mail: <strong><a href="kprog@lnu.edu.ua" >kprog@lnu.edu.ua</a></strong></h3>
-                    
+                    <h3>E-mail: <strong><a href="kprog@lnu.edu.ua">kprog@lnu.edu.ua</a></strong></h3>
+
                 </div>
             </div>
         </div>
         <div>@RenderBody()</div>
     </aside>
-
     <!-- Map -->
-    <section id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-        <br />
-        <small>
-            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-        </small>
-        </iframe>
+    <section id="contact">
+        <aside class="callout_map">
+            @*<div class="text-vertical-center">
+        </div>*@
+        </aside>
     </section>
 
     <!-- Footer -->
@@ -194,28 +195,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h4><strong>Start Bootstrap</strong>
+                    <h4><strong>Кафедра програмування ФПМІ</strong>
                     </h4>
-                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                    <p>
+                        Львів,<br>
+                        Уеіверситетська 1
+                    </p>
                     <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
+                        <li><i class="fa fa-phone fa-fw"></i>(032) 239-47-57</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i><a href="kprog@lnu.edu.ua">kprog@lnu.edu.ua</a>
                         </li>
                     </ul>
                     <br>
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                        </li>
-                    </ul>
+
                     <hr class="small">
-                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
+                    <p class="text-muted">Copyright &copy; Кафедра програмування 2014</p>
                 </div>
             </div>
         </div>

@@ -122,7 +122,7 @@ function newYearSelected() {
         dataType: 'json',
         success: function (data) {
             $.each(data, function (key, val) {
-                var person = '<tr><td>' + val.Name + '</td> <td>' + val.LastName + '</td> </tr>';
+                var person = '<tr><td>' + val.FullName+ '</td> </tr>';
                 $("#graduates").append(person);
             });
             $('#graduates').fadeIn(2000);

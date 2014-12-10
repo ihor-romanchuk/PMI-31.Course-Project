@@ -10,6 +10,7 @@ using PMI31CourseProject;
 using DAL;
 using BLL;
 using ProgramingDeptMVC.Models;
+using ProjectDatabase;
 
 namespace ProgramingDeptMVC.Controllers
 {
@@ -106,6 +107,11 @@ namespace ProgramingDeptMVC.Controllers
             return View();
         }
 
+        public ViewResult FindGraduatesByYearHome()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult SignIn(BLL.LoginAction resultOfLogin)
         {
@@ -163,7 +169,12 @@ namespace ProgramingDeptMVC.Controllers
         public ActionResult Changed(string Year)
         {
             int yearId = Convert.ToInt32(Year);
-            return Json(manager.GetAllUsersByGraduateYear(yearId), JsonRequestBehavior.AllowGet);
+            using (var db = new TempProjectEntities())
+            {
+                var result = db.Graduates.Where(g => g.GraduationYear == yearId);
+                return Json(result.ToList(), JsonRequestBehavior.AllowGet);
+            }
         }
+
     }
 }
