@@ -31,6 +31,7 @@ namespace BLLUnitTests
             testAction.role = Role.Graduate;
             ManageUsers testManege = new ManageUsers();
             RegistrationStatus status = testAction.RegistrationCheck(testManege);
+            testManege.DeleteUser("login");
             Assert.AreEqual(status, RegistrationStatus.RegistratedGraduate);
         }
 
@@ -45,6 +46,7 @@ namespace BLLUnitTests
             testAction.role = Role.Lecturer;
             ManageUsers testManege = new ManageUsers();
             RegistrationStatus status = testAction.RegistrationCheck(testManege);
+            testManege.DeleteUser("login");
             Assert.AreEqual(status, RegistrationStatus.RegistratedLecturer);
         }
     }
