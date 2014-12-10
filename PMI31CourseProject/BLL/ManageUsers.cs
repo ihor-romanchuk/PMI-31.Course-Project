@@ -82,12 +82,12 @@ namespace BLL
             return user;
         }
 
-        public List<User> GetAllUsersByGraduateYear(int year)
+        public List<User> GetAllUsersByGraduateYear(int graduationYear)
         {
             List<User> users = new List<User>();
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
-                Expression<Func<User, bool>> expr = G => G.UserInfo.GraduateInfo.EntranceYear == year;
+                Expression<Func<User, bool>> expr = G => G.UserInfo.GraduateInfo.GraduationYear == graduationYear;
                 users = unitOfWork.ContactRepository.GetMany(expr).ToList<User>();
             }
             return users;
