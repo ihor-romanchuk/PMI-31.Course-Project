@@ -149,7 +149,7 @@ namespace BLLUnitTests
         public void TestLecturerStatusExpected()
         {
             ManageUsers testUser = new ManageUsers();
-            RegistrationAction reg = new RegistrationAction { username = "lecturer1", password = "111", role = Role.Lecturer };
+            RegistrationAction reg = new RegistrationAction { username = "lecturer1", password = "111", role = Role.Lecturer, fullName = "fullname" };
             reg.RegistrationCheck(testUser);
             LoginAction testLoginAction = new LoginAction("lecturer1", "111");
             var result = testLoginAction.AuthenticationCheck(testUser);
@@ -169,7 +169,7 @@ namespace BLLUnitTests
         public void TestGraduateStatusExpected()
         {
             ManageUsers testUser = new ManageUsers();
-            RegistrationAction reg = new RegistrationAction { username = "graduate1", password = "111", role = Role.Graduate };
+            RegistrationAction reg = new RegistrationAction { username = "graduate1", password = "111", role = Role.Graduate, fullName = "fullname" };
             reg.RegistrationCheck(testUser);
             LoginAction testLoginAction = new LoginAction("graduate1", "111");
             var result = testLoginAction.AuthenticationCheck(testUser);
@@ -191,7 +191,7 @@ namespace BLLUnitTests
             ManageUsers testUser = new ManageUsers();
             LoginAction testLoginAction = new LoginAction("this_user_is_abent_in_database", "111");
             var result = testLoginAction.AuthenticationCheck(testUser);
-            Assert.IsTrue(result == (AuthenticationStatus.Graduate));
+            Assert.IsTrue(result == (AuthenticationStatus.NoUser));
         }
     }
 
