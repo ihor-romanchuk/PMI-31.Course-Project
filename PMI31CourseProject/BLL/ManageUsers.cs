@@ -19,7 +19,7 @@ namespace BLL
          /// <summary>
         /// This method takes users contacts
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Collection of users.</returns>
         public IEnumerable<User> GetContacts()
         {
             IEnumerable<User> users;
@@ -33,8 +33,8 @@ namespace BLL
         /// <summary>
         /// This method Add User
         /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
+        /// <param name="user">User to add.</param>
+        /// <returns>Boolean value, which means if user was added.</returns>
         public bool AddUser(User user)
         {
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
@@ -46,10 +46,10 @@ namespace BLL
         }
         
         /// <summary>
-        /// This method Update user information user
+        /// This method updates user information.
         /// </summary>
-        /// <param name="user"></param>
-        /// <param name="login"></param>
+        /// <param name="user">User to upadate</param>
+        /// <param name="login">Login of user.</param>
         /// <returns></returns>
         public bool UpdateUser(User user, string login)
         {
@@ -69,8 +69,8 @@ namespace BLL
         /// <summary>
         /// This method delete user
         /// </summary>
-        /// <param name="login"></param>
-        /// <returns></returns>
+        /// <param name="login">Login of user to delete</param>
+        /// <returns>Boolean value, which means if user was deleted.</returns>
         public bool DeleteUser(string login)
         {
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
@@ -85,8 +85,8 @@ namespace BLL
         /// <summary>
         /// This method Get Id By Login
         /// </summary>
-        /// <param name="login"></param>
-        /// <returns></returns>
+        /// <param name="login">Login for searching.</param>
+        /// <returns>Id of user.</returns>
         private int GetIdByLogin(string login)
         {
             int id;
@@ -103,8 +103,8 @@ namespace BLL
         /// <summary>
         /// This method Get user By Id
         /// </summary>
-        /// <param name="login"></param>
-        /// <returns></returns>
+        /// <param name="login">Login of user to get.</param>
+        /// <returns>User By Id.</returns>
         public User GetById(string login)
         {
             User user;
@@ -118,7 +118,7 @@ namespace BLL
         /// <summary>
         /// This method Get All Users By Graduate Year
         /// </summary>
-        /// <param name="year"></param>
+        /// <param name="year">Year of graduation to find.</param>
         /// <returns></returns>
         public List<User> GetAllUsersByGraduateYear(int graduationYear)
         {

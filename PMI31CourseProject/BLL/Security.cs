@@ -15,8 +15,8 @@ namespace BLL
         /// <summary>
         /// This method  Hash Password 
         /// </summary>
-        /// <param name="password"></param>
-        /// <returns></returns>
+        /// <param name="password">Password to hash.</param>
+        /// <returns>Handled password.</returns>
         public static string HashPassword(string password)
         {
             if (password.Equals(string.Empty))

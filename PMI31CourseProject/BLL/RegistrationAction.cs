@@ -41,8 +41,8 @@ namespace BLL
         /// <summary>
         /// This method Registration Check users
         /// </summary>
-        /// <param name="users"></param>
-        /// <returns></returns>
+        /// <param name="users">Users to check.</param>
+        /// <returns>Status of registration.</returns>
         public RegistrationStatus RegistrationCheck(ManageUsers users)
         {
             User regUser;

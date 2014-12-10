@@ -35,8 +35,8 @@ namespace BLL
         /// <summary>
         /// constructor with parameters
         /// </summary>
-        /// <param name="uname"></param>
-        /// <param name="pswrd"></param>
+        /// <param name="uname">Username.</param>
+        /// <param name="pswrd">Password.</param>
         public LoginAction(string uname, string pswrd)
         {
             username = uname;
@@ -46,8 +46,8 @@ namespace BLL
         /// <summary>
         /// method authentication check
         /// </summary>
-        /// <param name="users"></param>
-        /// <returns></returns>
+        /// <param name="users">Users to check.</param>
+        /// <returns>Status of authentication.</returns>
         public AuthenticationStatus AuthenticationCheck(ManageUsers users)
         {
             User loggingUser = users.GetById(username);
