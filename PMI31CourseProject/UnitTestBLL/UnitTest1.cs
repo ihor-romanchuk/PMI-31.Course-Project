@@ -147,4 +147,37 @@ namespace BLLUnitTests
             Assert.IsTrue(result == (AuthenticationStatus.Graduate));
         }
     }
+
+    [TestClass]
+    public class UnitTestsForSecurity
+    {
+        [TestMethod]
+        public void TestHashPasswordForEmptyPassword()
+        {
+            string password = string.Empty;
+            Assert.AreEqual(password, Security.HashPassword(password));
+        }
+
+        [TestMethod]
+        public void TestHashPasswordForNotEmptyPassword()
+        {
+            string password = "password";
+            Assert.AreEqual("e201065d0554652615c320c00a1d5bc8", Security.HashPassword(password));
+        }
+
+        [TestMethod]
+        public void TestHashPasswordForSamePasswords()
+        {
+            string password = "password";
+            Assert.AreEqual(Security.HashPassword(password), Security.HashPassword(password));
+        }
+
+        [TestMethod]
+        public void TestHashPasswordForDifferentPasswords()
+        {
+            string password1 = "password";
+            string password2 = "Password";
+            Assert.AreNotEqual(Security.HashPassword(password1), Security.HashPassword(password2));
+        }
+    }
 }
