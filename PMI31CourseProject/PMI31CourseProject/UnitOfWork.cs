@@ -11,15 +11,33 @@ using ProjectDatabase;
 
 namespace DAL
 {
+    /// <summary>
+    /// class UnitOfWork
+    /// </summary>
+    /// <typeparam name="T">type of table</typeparam>
     public class UnitOfWork<T>:IDisposable where T : class
     {
+        /// <summary>
+        /// Enitity of database
+        /// </summary>
         private Course_ProjectEntities _context;
+
+        /// <summary>
+        /// Connect repository
+        /// </summary>
         private ConnectRepository<T> _contactRepository;
 
+        /// <summary>
+        /// Initialize a new instance of the <see cref="UnitOfWork"/> class
+        /// </summary>
         public UnitOfWork()
         {
             _context = new Course_ProjectEntities();
         }
+
+        /// <summary>
+        /// Gets or sets contactRepository
+        /// </summary>
         public ConnectRepository<T> ContactRepository
         {
             get
@@ -32,11 +50,24 @@ namespace DAL
                 return _contactRepository;
             }
         }
+
+        /// <summary>
+        /// Save change
+        /// </summary>
         public void Save()
         {
             _context.SaveChanges();
         }
+
+        /// <summary>
+        /// is diposed
+        /// </summary>
         private bool _disposed = false;
+
+        /// <summary>
+        /// Resetting unmanaged resources
+        /// </summary>
+        /// <param name="disposing">is disposing</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!this._disposed)
@@ -49,6 +80,9 @@ namespace DAL
             this._disposed = true;
         }
 
+        /// <summary>
+        /// Resetting unmanaged resources
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
