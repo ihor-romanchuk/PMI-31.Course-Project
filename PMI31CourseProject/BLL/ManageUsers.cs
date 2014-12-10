@@ -130,7 +130,7 @@ namespace BLL
             }
             List<User> a = new List<User>();
             a.Add(users[0]);
-            return a;
+            return users;
         }
     }
 }
