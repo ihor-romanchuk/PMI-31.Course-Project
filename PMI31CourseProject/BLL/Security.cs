@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
+     /// <summary>
+    /// class Security
+    /// </summary>
     public class Security
     {
+        /// <summary>
+        /// This method  Hash Password 
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public static string HashPassword(string password)
         {
             if (password.Equals(string.Empty))
