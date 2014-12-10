@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BLL;
 using PMI31CourseProject;
@@ -51,7 +52,51 @@ namespace BLLUnitTests
     [TestClass]
     public class UnitTestsForLoginAction
     {
-
+        [TestMethod]
+        public void TestAuthenticationCheckIfAdministrator()
+        {
+            ManageUsers users = new ManageUsers();
+            LoginAction loginAction = new LoginAction();
+            loginAction = new LoginAction("User1", "Pa$$word");
+            string password = Security.HashPassword("Pa$$word");
+            User loggingUser = new User();
+            loggingUser.Login = "User1";
+            loggingUser.Password = "Pa$$word";
+            loggingUser.FullName = "User Number1";
+            loggingUser.Role = "admin";
+            users.AddUser(loggingUser);
+            Assert.AreEqual(AuthenticationStatus.Administrator, loginAction.AuthenticationCheck(users));
+        }
+        [TestMethod]
+        public void TestAuthenticationCheckIfGraduate()
+        {
+            ManageUsers users = new ManageUsers();
+            LoginAction loginAction = new LoginAction();
+            loginAction = new LoginAction("User1", "Pa$$word");
+            string password = Security.HashPassword("Pa$$word");
+            User loggingUser = new User();
+            loggingUser.Login = "User1";
+            loggingUser.Password = "Pa$$word";
+            loggingUser.FullName = "User Number1";
+            loggingUser.Role = "graduate";
+            users.AddUser(loggingUser);
+            Assert.AreEqual(AuthenticationStatus.Graduate, loginAction.AuthenticationCheck(users));
+        }
+        [TestMethod]
+        public void TestAuthenticationCheckIfLecturer()
+        {
+            ManageUsers users = new ManageUsers();
+            LoginAction loginAction = new LoginAction();
+            loginAction = new LoginAction("User1", "Pa$$word");
+            string password = Security.HashPassword("Pa$$word");
+            User loggingUser = new User();
+            loggingUser.Login = "User1";
+            loggingUser.Password = "Pa$$word";
+            loggingUser.FullName = "User Number1";
+            loggingUser.Role = "lecturer";
+            users.AddUser(loggingUser);
+            Assert.AreEqual(AuthenticationStatus.Lecturer, loginAction.AuthenticationCheck(users));
+        }
 
         //[TestMethod, Isolated]
         //public void TestAuthenticationCheckMethodForNoUser()
@@ -236,6 +281,26 @@ namespace BLLUnitTests
              user.Role = "admin";
              User temp = manageUsers.GetById("admin");
              Assert.IsTrue(user==temp);
+         }
+         [TestMethod]
+         public void TestGetAllUsersByGraduateYear()
+         {
+             ManageUsers manage = new ManageUsers();
+             List<User> users = new List<User>();
+             users = manage.GetAllUsersByGraduateYear(1991);
+             Assert.AreEqual(1996, users[0].UserInfo.GraduateInfo.GraduationYear);
+         }
+         [TestMethod]
+         public void TestUpdateUser()
+         {
+             ManageUsers manage = new ManageUsers();
+             User user = new User();
+             user.Login = "Login2";
+             user.Password = "Pa$$word";
+             user.Role = "admin";
+             user.FullName = "First User";
+             user.IsRegistered = true;
+             Assert.IsTrue(manage.UpdateUser(user, "Login1"));
          }
     }
 }
