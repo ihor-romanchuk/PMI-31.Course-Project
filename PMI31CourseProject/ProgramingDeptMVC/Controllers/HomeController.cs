@@ -169,11 +169,7 @@ namespace ProgramingDeptMVC.Controllers
         public ActionResult Changed(string Year)
         {
             int yearId = Convert.ToInt32(Year);
-            using (var db = new TempProjectEntities())
-            {
-                var result = db.Graduates.Where(g => g.GraduationYear == yearId);
-                return Json(result.ToList(), JsonRequestBehavior.AllowGet);
-            }
+            return Json(manager.GetAllUsersByGraduateYear(yearId), JsonRequestBehavior.AllowGet);
         }
 
     }

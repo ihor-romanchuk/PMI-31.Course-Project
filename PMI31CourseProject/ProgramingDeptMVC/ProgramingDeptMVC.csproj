@@ -171,24 +171,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Graduates.cs">
-      <DependentUpon>GraduateTempModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GraduateTempModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GraduateTempModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GraduateTempModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GraduateTempModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GraduateTempModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GraduateTempModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\TestGraduee.cs" />
@@ -406,27 +388,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\FindGraduatesByYear.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="GraduateTempModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GraduateTempModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="GraduateTempModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GraduateTempModel.edmx</DependentUpon>
-      <LastGenOutput>GraduateTempModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="GraduateTempModel.edmx.diagram">
-      <DependentUpon>GraduateTempModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="GraduateTempModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GraduateTempModel.edmx</DependentUpon>
-      <LastGenOutput>GraduateTempModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
