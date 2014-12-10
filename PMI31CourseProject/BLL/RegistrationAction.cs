@@ -68,6 +68,8 @@ namespace BLL
                 }
                 regUser.Role = roleName;
                 users.AddUser(regUser);
+                regUser.IsRegistered = true;
+                regUser.UserInfo = new UserInfo();
                 if (this.role == Role.Graduate)
                 {
                     return RegistrationStatus.RegistratedGraduate;
