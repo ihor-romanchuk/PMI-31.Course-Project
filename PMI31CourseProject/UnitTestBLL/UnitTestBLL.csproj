@@ -79,6 +79,10 @@
       <Project>{0972a533-bb7e-4610-8251-4b5f9cefe019}</Project>
       <Name>ProgramingDeptMVC</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProjectDatabase\ProjectDatabase.csproj">
+      <Project>{c991787f-04ee-42cb-bb1f-b0771c9a77ec}</Project>
+      <Name>ProjectDatabase</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
