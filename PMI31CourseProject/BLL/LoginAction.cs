@@ -8,23 +8,46 @@ using ProjectDatabase;
 
 namespace BLL
 {
+    /// <summary>
+    /// class LoginAction
+    /// </summary>
     public class LoginAction
     {
+         /// <summary>
+        /// get and set user name
+        /// </summary>
         public string username { get; set; }
+        
+        /// <summary>
+        /// get and set password user
+        /// </summary>
         public string password { get; set; }
 
+        /// <summary>
+        /// constructor 
+        /// </summary>
         public LoginAction()
         {
             username = string.Empty;
             password = string.Empty;
         }
-
+        
+        /// <summary>
+        /// constructor with parameters
+        /// </summary>
+        /// <param name="uname"></param>
+        /// <param name="pswrd"></param>
         public LoginAction(string uname, string pswrd)
         {
             username = uname;
             password = pswrd;
         }
 
+        /// <summary>
+        /// method authentication check
+        /// </summary>
+        /// <param name="users"></param>
+        /// <returns></returns>
         public AuthenticationStatus AuthenticationCheck(ManageUsers users)
         {
             User loggingUser = users.GetById(username);
