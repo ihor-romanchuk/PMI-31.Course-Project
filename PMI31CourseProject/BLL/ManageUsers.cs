@@ -11,8 +11,15 @@ using ProjectDatabase;
 
 namespace BLL
 {
+     /// <summary>
+    /// class Manage Users
+    /// </summary>
     public class ManageUsers
     {
+         /// <summary>
+        /// This method takes users contacts
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<User> GetContacts()
         {
             IEnumerable<User> users;
@@ -23,6 +30,11 @@ namespace BLL
             return users;
         }
 
+        /// <summary>
+        /// This method Add User
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public bool AddUser(User user)
         {
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
@@ -32,7 +44,13 @@ namespace BLL
             }
             return true;
         }
-
+        
+        /// <summary>
+        /// This method Update user information user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="login"></param>
+        /// <returns></returns>
         public bool UpdateUser(User user, string login)
         {
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
@@ -47,7 +65,12 @@ namespace BLL
             }
             return true;
         }
-
+        
+        /// <summary>
+        /// This method delete user
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         public bool DeleteUser(string login)
         {
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
@@ -59,6 +82,11 @@ namespace BLL
             return true;
         }
 
+        /// <summary>
+        /// This method Get Id By Login
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         private int GetIdByLogin(string login)
         {
             int id;
@@ -71,7 +99,12 @@ namespace BLL
             }
             return id;
         }
-
+        
+        /// <summary>
+        /// This method Get user By Id
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         public User GetById(string login)
         {
             User user;
@@ -81,7 +114,12 @@ namespace BLL
             }
             return user;
         }
-
+        
+        /// <summary>
+        /// This method Get All Users By Graduate Year
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
         public List<User> GetAllUsersByGraduateYear(int graduationYear)
         {
             List<User> users = new List<User>();
