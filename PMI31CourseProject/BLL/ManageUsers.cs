@@ -139,6 +139,11 @@ namespace BLL
             return user;
         }
 
+        /// <summary>
+        /// Get user By Full Name
+        /// </summary>
+        /// <param name="FullName">Full Name of user to get</param>
+        /// <returns>User By Full Name</returns>
         public User GetByFullName(string FullName)
         {
             User user;

@@ -39,10 +39,6 @@ namespace BLL
 
         public RegistrationAction()
         {
-            username = "";
-            password = "";
-            email = "";
-            fullName = "";
             role = Role.Graduate;
         }
         /// <summary>
