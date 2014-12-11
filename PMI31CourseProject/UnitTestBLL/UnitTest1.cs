@@ -355,6 +355,20 @@ namespace BLLUnitTests
         }
 
         [TestMethod, Isolated]
+        public void TestMethodAddUserIsNotNull()
+        {
+            UnitOfWork<User> unitOfWork = null;
+            User user = new User();
+            UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>();
+            Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
+            Isolate.WhenCalled(() => fake.ContactRepository.Add(user)).WithExactArguments().IgnoreCall();
+            Isolate.WhenCalled(() => fake.Save()).WithExactArguments().IgnoreCall();
+            ManageUsers testUser = new ManageUsers();
+            testUser.AddUser(user);
+            Assert.IsNotNull(testUser);
+        }
+
+        [TestMethod, Isolated]
         public void TestMethodDeleteUser()
         {
             User user = new User();
@@ -381,6 +395,25 @@ namespace BLLUnitTests
             Isolate.WhenCalled(() => fake.ContactRepository.GetMany(expr)).WithExactArguments().WillReturn(null);
             ManageUsers testUser = new ManageUsers();
             Assert.IsTrue(-1 == testUser.GetIdByLogin(login));
+        }
+
+
+        [TestMethod, Isolated]
+        public void TestMethodDeleteUserIsTrue()
+        {
+            User user = new User();
+            string login = string.Empty;
+            user.Login = login;
+            UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>();
+            Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
+            Isolate.WhenCalled(() => fake.ContactRepository.GetById(login)).WithExactArguments().WillReturn(user);
+            Isolate.WhenCalled(() => fake.ContactRepository.Delete(user)).WithExactArguments().IgnoreCall();
+            Isolate.WhenCalled(() => fake.Save()).WithExactArguments().IgnoreCall();
+            ManageUsers testUser = new ManageUsers();
+            testUser.AddUser(user);
+            testUser.DeleteUser(login);
+            testUser.GetIdByLogin(login);
+            Assert.IsTrue(-1==testUser.GetIdByLogin(login));
         }
 
         [TestMethod, Isolated]
