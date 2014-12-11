@@ -130,8 +130,9 @@ namespace ProgramingDeptMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(BLL.RegistrationAction registration)
+        public ActionResult Register(RegisterUser user)
         {
+            BLL.RegistrationAction registration = new RegistrationAction(){email = user.Email, fullName = user.FullName, password = user.Password, username = user.Login};
                 switch (registration.RegistrationCheck(manager))
                 {
                     case RegistrationStatus.RegistratedGraduate:

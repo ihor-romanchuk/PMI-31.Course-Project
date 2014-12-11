@@ -178,7 +178,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LiginUser.cs" />
-    <Compile Include="Models\RegistrationModel.cs" />
+    <Compile Include="Models\RegisterUser.cs" />
     <Compile Include="Models\TestGraduee.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
