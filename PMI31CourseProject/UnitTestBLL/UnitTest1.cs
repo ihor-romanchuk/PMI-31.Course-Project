@@ -115,6 +115,22 @@ namespace BLLUnitTests
         }
 
         [TestMethod, Isolated]
+        public void TestMethodAddUser()
+        {
+            User user = new User();
+            using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
+            {
+                using (UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>())
+                {
+                    Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
+                    Isolate.WhenCalled(() => fake.ContactRepository.Add(user)).WithExactArguments().IgnoreCall();
+                    Isolate.WhenCalled(() => fake.Save()).WithExactArguments().IgnoreCall();
+                    ManageUsers testUser = new ManageUsers();
+                    Assert.IsTrue(testUser.AddUser(user));
+                }
+            }
+        }
+        [TestMethod, Isolated]
         public void TestMethodRegistrationCheckIfLecturer()
         {
             ManageUsers testManageUser = new ManageUsers();
@@ -342,18 +358,4 @@ namespace BLLUnitTests
         }
     }
 
-    [TestClass]
-    public class TestManageUsers
-    {
-        //[TestMethod]
-        //public void TestMethodGetContacts()
-        //{
-        //    IEnumerable<User> users ;
-        //    UnitOfWork<User> unitOfWork = new UnitOfWork<User>();
-        //    Repository<User> fake = Isolate.Fake.Instance<Repository<User>>();
-        //    Isolate.Swap.AllInstances < Repository<User>>().With(fake);
-        //    Isolate.WhenCalled(() => fake.GetAll()).WithExactArguments().WillReturn(users);
-        //}
-
-    }
 }
