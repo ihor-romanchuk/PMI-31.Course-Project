@@ -127,11 +127,11 @@ namespace BLLUnitTests
         {
             ManageUsers testManageUser = new ManageUsers();
             RegistrationAction testAction = new RegistrationAction();
-            testAction.username = "login";
+            testAction.fullName = "name";
             User user = null;
             ManageUsers fakeManageUser = Isolate.Fake.Instance<ManageUsers>();
             Isolate.Swap.AllInstances<ManageUsers>().With(fakeManageUser);
-            Isolate.WhenCalled(() => fakeManageUser.GetById("login")).WithExactArguments().WillReturn(user);
+            Isolate.WhenCalled(() => fakeManageUser.GetByFullName("name")).WithExactArguments().WillReturn(user);
             RegistrationStatus status = testAction.RegistrationCheck(testManageUser);
             Assert.AreEqual(status, RegistrationStatus.Failed);
         }
@@ -153,7 +153,7 @@ namespace BLLUnitTests
             User user = new ProjectDatabase.User();
             ManageUsers fakeManageUser = Isolate.Fake.Instance<ManageUsers>();
             Isolate.Swap.AllInstances<ManageUsers>().With(fakeManageUser);
-            Isolate.WhenCalled(() => fakeManageUser.GetById("login")).WithExactArguments().WillReturn(user);
+            Isolate.WhenCalled(() => fakeManageUser.GetByFullName("TestFullName")).WithExactArguments().WillReturn(user);
             RegistrationStatus status = testAction.RegistrationCheck(testManageUser);
             Assert.AreEqual(status, RegistrationStatus.RegistratedGraduate);
         }
@@ -175,7 +175,7 @@ namespace BLLUnitTests
             User user = new ProjectDatabase.User();
             ManageUsers fakeManageUser = Isolate.Fake.Instance<ManageUsers>();
             Isolate.Swap.AllInstances<ManageUsers>().With(fakeManageUser);
-            Isolate.WhenCalled(() => fakeManageUser.GetById("login")).WithExactArguments().WillReturn(user);
+            Isolate.WhenCalled(() => fakeManageUser.GetByFullName("TestFullName")).WithExactArguments().WillReturn(user);
             RegistrationStatus status = testAction.RegistrationCheck(testManageUser);
             Assert.AreEqual(status, RegistrationStatus.RegistratedLecturer);
         }
