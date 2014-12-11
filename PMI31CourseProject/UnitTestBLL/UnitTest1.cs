@@ -44,10 +44,41 @@ namespace BLLUnitTests
             testAction.role = Role.Graduate;
             Assert.IsFalse(testAction.CheckRoleIsLecturer());
         }
+
         [TestMethod]
-        public void TestMethodSetRoleForUserForGraduate(ref string roleName)
+        public void TestMethodSetRoleForUserForLecturer()
+        {
+            string roleName = "";
+            RegistrationAction testAction = new RegistrationAction();
+            testAction.role = Role.Lecturer;
+            testAction.SetRoleForUser(ref roleName);
+            Assert.AreEqual(roleName, "lecturer");
+        }
+
+        [TestMethod]
+        public void TestMethodSetRoleForUserForGraduate()
+        {
+            string roleName = "";
+            RegistrationAction testAction = new RegistrationAction();
+            testAction.role = Role.Graduate;
+            testAction.SetRoleForUser(ref roleName);
+            Assert.AreEqual(roleName, "graduate");
+        }
+
+        [TestMethod]
+        public void TestMethodSetRegistrationStatusForGraduate()
         {
             RegistrationAction testAction = new RegistrationAction();
+            testAction.role = Role.Graduate;
+            Assert.AreEqual(testAction.SetRegistrationStatus(), RegistrationStatus.RegistratedGraduate);
+        }
+
+        [TestMethod]
+        public void TestMethodSetRegistrationStatusForLecturer()
+        {
+            RegistrationAction testAction = new RegistrationAction();
+            testAction.role = Role.Lecturer;
+            Assert.AreEqual(testAction.SetRegistrationStatus(), RegistrationStatus.RegistratedLecturer);
         }
 
         [TestMethod, Isolated]
