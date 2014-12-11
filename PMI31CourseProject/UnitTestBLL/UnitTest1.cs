@@ -106,9 +106,10 @@ namespace BLLUnitTests
             testAction.email = "test@gmail.com";
             testAction.fullName = "TestFullName";
             testAction.role = Role.Graduate;
+            User user = new User();
             ManageUsers fakeManageUser = Isolate.Fake.Instance<ManageUsers>();
             Isolate.Swap.AllInstances<ManageUsers>().With(fakeManageUser);
-            Isolate.WhenCalled(() => fakeManageUser.GetById("login")).WithExactArguments().WillReturn(null);
+            Isolate.WhenCalled(() => fakeManageUser.GetById("login")).WithExactArguments().WillReturn(user);
             RegistrationStatus status = testAction.RegistrationCheck(testManageUser);
             Assert.AreEqual(status, RegistrationStatus.RegistratedGraduate);
         }
@@ -123,9 +124,10 @@ namespace BLLUnitTests
             testAction.email = "test@gmail.com";
             testAction.fullName = "TestFullName";
             testAction.role = Role.Lecturer;
+            User user = new User();
             ManageUsers fakeManageUser = Isolate.Fake.Instance<ManageUsers>();
             Isolate.Swap.AllInstances<ManageUsers>().With(fakeManageUser);
-            Isolate.WhenCalled(() => fakeManageUser.GetById("login")).WithExactArguments().WillReturn(null);
+            Isolate.WhenCalled(() => fakeManageUser.GetById("login")).WithExactArguments().WillReturn(user);
             RegistrationStatus status = testAction.RegistrationCheck(testManageUser);
             Assert.AreEqual(status, RegistrationStatus.RegistratedLecturer);
         }
