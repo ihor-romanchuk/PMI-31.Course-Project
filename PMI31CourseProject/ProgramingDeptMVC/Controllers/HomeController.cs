@@ -152,6 +152,10 @@ namespace ProgramingDeptMVC.Controllers
         [HttpPost]
         public ActionResult Changed(string Year)
         {
+            if (Year == "undefined")
+            {
+                Year = "0";
+            }
             int yearId = Convert.ToInt32(Year);
             List<ProjectDatabase.User> usersFromDb = manager.GetAllUsersByGraduateYear(yearId);
             List<Models.User> users = new List<Models.User>();

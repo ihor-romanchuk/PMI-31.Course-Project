@@ -55,7 +55,7 @@ namespace BLL
         {
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
-                var contactEntity = unitOfWork.ContactRepository.GetById(id);
+                var contactEntity = unitOfWork.ContactRepository.GetById(GetIdByFullName(id));
                 contactEntity.Login = user.Login;
                 contactEntity.Password = Security.HashPassword(user.Password);
                 contactEntity.Role = user.Role;
@@ -105,7 +105,25 @@ namespace BLL
             }
             return Id;
         }
-        
+
+        public int GetIdByFullName(string userName)
+        {
+            int Id;
+            using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
+            {
+                Expression<Func<User, bool>> expr = G => G.FullName == userName;
+                var listOfUsers = unitOfWork.ContactRepository.GetMany(expr).ToList();
+                if (listOfUsers.Count == 0)
+                {
+                    Id = -1;
+                }
+                else
+                {
+                    Id = listOfUsers[0].Id;
+                }
+            }
+            return Id;
+        }
         /// <summary>
         /// This method Get user By Id
         /// </summary>
@@ -120,7 +138,16 @@ namespace BLL
             }
             return user;
         }
-        
+
+        public User GetByFullName(string FullName)
+        {
+            User user;
+            using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
+            {
+                user = unitOfWork.ContactRepository.GetById(GetIdByFullName(FullName));
+            }
+            return user;
+        }
         /// <summary>
         /// This method Get All Users By Graduate Year
         /// </summary>

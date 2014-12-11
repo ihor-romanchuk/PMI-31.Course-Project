@@ -127,23 +127,22 @@ namespace BLL
         public RegistrationStatus RegistrationCheck(ManageUsers users)
         {
             User regUser;
-            regUser = users.GetById(username);
+            regUser = users.GetByFullName(fullName);
             if (regUser == null)
             {
                 return RegistrationStatus.Failed;
             }
             else
             {
-                regUser = new User();
                 regUser.Login = username;
                 regUser.Password = Security.HashPassword(password);
                 regUser.FullName = fullName;
                 string roleName = string.Empty;
                 this.SetRoleForUser(ref roleName);
                 regUser.Role = roleName;
-                users.AddUser(regUser);
                 regUser.IsRegistered = true;
                 regUser.UserInfo = new UserInfo();
+                users.UpdateUser(regUser,regUser.FullName);
                 return SetRegistrationStatus();
             }
         }
