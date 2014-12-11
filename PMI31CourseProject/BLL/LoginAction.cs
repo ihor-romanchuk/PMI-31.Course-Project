@@ -9,68 +9,88 @@ using ProjectDatabase;
 namespace BLL
 {
     /// <summary>
-    /// class LoginAction
+    /// Class for representing login action
     /// </summary>
     public class LoginAction
     {
-         /// <summary>
-        /// get and set user name
-        /// </summary>
-        public string username { get; set; }
-        
         /// <summary>
-        /// get and set password user
+        /// Property for representing user name
         /// </summary>
-        public string password { get; set; }
+        public string UserLogin { get; set; }
 
         /// <summary>
-        /// constructor 
+        /// Property for representing user password
+        /// </summary>
+        public string UserPassword { get; set; }
+
+        /// <summary>
+        /// Default constructor
         /// </summary>
         public LoginAction()
         {
-            username = string.Empty;
-            password = string.Empty;
-        }
-        
-        /// <summary>
-        /// constructor with parameters
-        /// </summary>
-        /// <param name="uname">Username.</param>
-        /// <param name="pswrd">Password.</param>
-        public LoginAction(string uname, string pswrd)
-        {
-            username = uname;
-            password = pswrd;
+            UserLogin = string.Empty;
+            UserPassword = string.Empty;
         }
 
         /// <summary>
-        /// method authentication check
+        /// Constructor with parameters
         /// </summary>
-        /// <param name="users">Users to check.</param>
-        /// <returns>Status of authentication.</returns>
-        public AuthenticationStatus AuthenticationCheck(ManageUsers users)
+        /// <param name="uname">user name</param>
+        /// <param name="pswrd">user password</param>
+        public LoginAction(string uname, string pswrd)
         {
-            User loggingUser = users.GetById(username);
-            if (loggingUser != null)
+            UserLogin = uname;
+            UserPassword = pswrd;
+        }
+
+        /// <summary>
+        /// Get AuthenticationStatus for user
+        /// </summary>
+        /// <param name="user">user</param>
+        /// <returns>AuthenticationStatus for user</returns>
+        public AuthenticationStatus GetAuthenticationStatusForUser(User user)
+        {
+            if (user.Password != Security.HashPassword(this.UserPassword))
             {
-                if (loggingUser.Password != Security.HashPassword(this.password))
-                {
-                    return AuthenticationStatus.WrongPassword;
-                }
-                if (loggingUser.Role == "admin")
+                return AuthenticationStatus.WrongPassword;
+            }
+            else
+                if (user.Role == "admin")
                 {
                     return AuthenticationStatus.Administrator;
                 }
-                if (loggingUser.Role == "graduate")
-                {
-                    return AuthenticationStatus.Graduate;
-                }
-                if (loggingUser.Role == "lecturer")
-                {
-                    return AuthenticationStatus.Lecturer;
-                }
+                else
+                    if (user.Role == "graduate")
+                    {
+                        return AuthenticationStatus.Graduate;
+                    }
+                    else
+                        if (user.Role == "lecturer")
+                        {
+                            return AuthenticationStatus.Lecturer;
+                        }
+                        else
+                        {
+                            return AuthenticationStatus.NoUser;
+                        }
+        }
+
+        /// <summary>
+        /// AuthentificationCheck method for get AuthenticationStatus
+        /// </summary>
+        /// <param name="user">parameter for connecting with database</param>
+        /// <returns>AuthenticationStatus for user with parameters: UserName, UserPassword</returns>
+        public AuthenticationStatus AuthenticationCheck(ManageUsers user)
+        {
+            User loggingUser = user.GetById(UserLogin);
+            if (loggingUser != null)
+            {
+                return GetAuthenticationStatusForUser(loggingUser);
             }
-            return AuthenticationStatus.NoUser;
+            else
+            {
+                return AuthenticationStatus.NoUser;
+            }
         }
     }
 }
