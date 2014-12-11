@@ -68,6 +68,7 @@ namespace BLLUnitTests
     [TestClass]
     public class UnitTestsForLoginAction
     {
+<<<<<<< HEAD
         /// <summary>
         /// String field for set user login in tests
         /// </summary>
@@ -81,6 +82,23 @@ namespace BLLUnitTests
         /// <summary>
         /// Test default constructor
         /// </summary>
+=======
+        /* [TestMethod]
+        public void TestAuthenticationCheckIfAdministrator()
+        {
+            ManageUsers users = new ManageUsers();
+            LoginAction loginAction = new LoginAction();
+            loginAction = new LoginAction("User1", "Pa$$word");
+            string password = Security.HashPassword("Pa$$word");
+            User loggingUser = new User();
+            loggingUser.Login = "User1";
+            loggingUser.Password = "Pa$$word";
+            loggingUser.FullName = "User Number1";
+            loggingUser.Role = "admin";
+            users.AddUser(loggingUser);
+            Assert.AreEqual(AuthenticationStatus.Administrator, loginAction.AuthenticationCheck(users));
+        }
+>>>>>>> origin/master
         [TestMethod]
         public void TestDefaultConstructor()
         {
@@ -145,6 +163,7 @@ namespace BLLUnitTests
         public void TestMethodAuthenticationCheckExpectedAuthenticationStatusAdministrator()
         {
             ManageUsers testUser = new ManageUsers();
+<<<<<<< HEAD
             User user = new User();
             user.Login = userLogin;
             user.Password = Security.HashPassword(userPassword);
@@ -157,6 +176,19 @@ namespace BLLUnitTests
             var gottenAuthenticationStatus = testLoginAction.AuthenticationCheck(testUser);
 
             Assert.IsTrue(expectedAuthenticationStatus == gottenAuthenticationStatus);
+=======
+            RegistrationAction reg = new RegistrationAction
+            {
+                username = "lecturer1",
+                password = "111",
+                role = Role.Lecturer,
+                fullName = "fullname"
+            };
+            reg.RegistrationCheck(testUser);
+            LoginAction testLoginAction = new LoginAction("lecturer1", "111");
+            var result = testLoginAction.AuthenticationCheck(testUser);
+            Assert.IsTrue(result == (AuthenticationStatus.Lecturer));
+>>>>>>> origin/master
         }
 
         [TestMethod, Isolated]
@@ -181,6 +213,7 @@ namespace BLLUnitTests
         public void TestMethodAuthenticationCheckExpectedAuthenticationStatusGraduate()
         {
             ManageUsers testUser = new ManageUsers();
+<<<<<<< HEAD
             User user = new User();
             user.Login = userLogin;
             user.Password = Security.HashPassword(userPassword);
@@ -193,6 +226,19 @@ namespace BLLUnitTests
             var gottenAuthenticationStatus = testLoginAction.AuthenticationCheck(testUser);
 
             Assert.IsTrue(expectedAuthenticationStatus == gottenAuthenticationStatus);
+=======
+            RegistrationAction reg = new RegistrationAction
+            {
+                username = "graduate1",
+                password = "111",
+                role = Role.Graduate,
+                fullName = "fullname"
+            };
+            reg.RegistrationCheck(testUser);
+            LoginAction testLoginAction = new LoginAction("graduate1", "111");
+            var result = testLoginAction.AuthenticationCheck(testUser);
+            Assert.IsTrue(result == (AuthenticationStatus.Graduate));
+>>>>>>> origin/master
         }
 
         /// <summary>
@@ -269,5 +315,100 @@ namespace BLLUnitTests
             string password2 = "Password";
             Assert.AreNotEqual(Security.HashPassword(password1), Security.HashPassword(password2));
         }
+
+        [TestMethod]
+        public void Test11()
+        {
+            ManageUsers tested = new ManageUsers();
+            List<User> a = tested.GetAllUsersByGraduateYear(2001);
+            Assert.AreEqual(1,1);
+        }
     }
+<<<<<<< HEAD
+=======
+
+    /* [TestClass]
+    public class UnitTestsForManageUsers
+    {
+
+        /*[TestMethod]
+        public void TestAddUser()
+        {
+            ManageUsers manageUsers = new ManageUsers();
+            User user = new User();
+            user.Id = 1;
+            user.Login = "admin";
+            user.Password = "1111";
+            user.Role = "admin";
+            user.FullName = "fullname";
+            bool temp = manageUsers.AddUser(user);
+            Assert.IsTrue(manageUsers.GetById("admin")==user);
+        }
+      
+        [TestMethod]
+        public void TestDeleteUser()
+        {
+            ManageUsers manageUsers = new ManageUsers();
+            User user = new User();
+            user.Id = 1;
+            user.Login = "admin";
+            user.Password = "1111";
+            user.Role = "admin";
+            bool temp = manageUsers.DeleteUser("admin");
+            Assert.IsFalse(manageUsers.GetById("admin") == user);
+        }*/
+
+    /*[TestMethod]
+         [ExpectedException(typeof(InvalidOperationException))]
+         public void ExceptionTestDeleteUser()
+         {
+             ManageUsers manageUsers = new ManageUsers();
+             User user = new User();
+             user.Id = 1;
+             user.Login = "admin";
+             user.Password = "1111";
+             user.Role = "admin";
+             manageUsers.DeleteUser("admin");
+             manageUsers.DeleteUser("admin");
+             manageUsers.DeleteUser("admin");
+         }*/
+
+    /* [TestMethod]
+         public void TestGetById()
+         {
+             ManageUsers manageUsers = new ManageUsers();
+             User user = new User();
+             user.Id = 1;
+             user.Login = "admin";
+             user.Password = "1111";
+             user.Role = "admin";
+             User temp = manageUsers.GetById("admin");
+             Assert.IsTrue(user==temp);
+         }
+         [TestMethod]
+         public void TestGetAllUsersByGraduateYear()
+         {
+             ManageUsers manage = new ManageUsers();
+             List<User> users = new List<User>();
+             users = manage.GetAllUsersByGraduateYear(1991);
+             Assert.AreEqual(1996, users[0].UserInfo.GraduateInfo.GraduationYear);
+         }
+         [TestMethod]
+         public void TestUpdateUser()
+         {
+             ManageUsers manage = new ManageUsers();
+             User user = new User();
+             user.Login = "Login2";
+             user.Password = "Pa$$word";
+             user.Role = "admin";
+             user.FullName = "First User";
+             user.IsRegistered = true;
+             Assert.IsTrue(manage.UpdateUser(user, "Login1"));
+         }
+    }*/
+
+
+
+
+>>>>>>> origin/master
 }
