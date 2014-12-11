@@ -48,7 +48,8 @@
                 <div style="padding-top: 30px" class="panel-body">
 
                     <div style="display: none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-
+                    <font color="red"> @ViewBag.Massage</font>
+                   
                     <form id="loginform" class="form-horizontal" role="form" method="post" action="">
 
                         <div style="margin-bottom: 25px" class="input-group">
@@ -90,7 +91,7 @@
                                     Не маєш сторінки? 
                                     <a href="/Home/Register" onclick="$('#loginbox').hide(); $('#signupbox').show(); ">зареєструйся тут
                                     </a>
-                                    @ViewBag.Massage
+                                    
                                 </div>
                             </div>
                         </div>

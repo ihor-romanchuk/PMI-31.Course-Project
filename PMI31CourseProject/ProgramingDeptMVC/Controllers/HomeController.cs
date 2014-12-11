@@ -20,16 +20,16 @@ namespace ProgramingDeptMVC.Controllers
         //
         // GET: /Home/
         ManageUsers manager = new ManageUsers();
-        private string signInMassage = string.Empty;
-        public ViewResult SignIn()
+ 
+        public ActionResult SignIn(string massage)
         {
-            ViewBag.Title = "Головна";
-            @ViewBag.Massage = this.signInMassage;
+            ViewBag.Title = "Вхід";
+            ViewBag.Massage = massage;
             return View();
         }
-        public ViewResult Register()
+        public ViewResult Register(string massage)
         {
-            ViewBag.Title = "Register";
+            ViewBag.Massage = massage;
             return View();
         }
 
@@ -102,37 +102,47 @@ namespace ProgramingDeptMVC.Controllers
         [HttpPost]
         public ActionResult SignIn(Models.LoginUser userLoginData)
         {
-            BLL.LoginAction resultOfLogin = new LoginAction(){UserLogin = userLoginData.Username, UserPassword = userLoginData.Password};
-            switch (resultOfLogin.AuthenticationCheck(manager))
+            try
             {
-                case AuthenticationStatus.Graduate:
-                    return Redirect(@"HomePage");
-                    break;
-                case AuthenticationStatus.Lecturer:
-                    return Redirect(@"HomePage");
-                    break;
-                case AuthenticationStatus.Administrator:
-                    return Redirect(@"HomePage");
-                    break;
-                case AuthenticationStatus.NoUser:
-                   this.signInMassage = "Немає користувача";
-                    return Redirect("SignIn");
-                    break;
-                case AuthenticationStatus.WrongPassword:
-                    this.signInMassage = "Невірний пароль";
-                    return Redirect("SignIn");
-                    break;
-                default:
-                    this.signInMassage = "Помилка реєстрації";
-                    return Redirect("SignIn");
+                BLL.LoginAction resultOfLogin = new LoginAction()
+                {
+                    UserLogin = userLoginData.Username,
+                    UserPassword = userLoginData.Password
+                };
+                switch (resultOfLogin.AuthenticationCheck(manager))
+                {
+                    case AuthenticationStatus.Graduate:
+                        return Redirect(@"HomePage");
+                        break;
+                    case AuthenticationStatus.Lecturer:
+                        return Redirect(@"HomePage");
+                        break;
+                    case AuthenticationStatus.Administrator:
+                        return Redirect(@"HomePage");
+                        break;
+                    case AuthenticationStatus.NoUser:
+                        return SignIn("Невірний логін або пароль");
+                        break;
+                    case AuthenticationStatus.WrongPassword:
+                        return SignIn("Невірний логін або пароль");
+                        break;
+                    default:
+                        return SignIn("Помилка входу");
 
+                }
+            }
+            catch (Exception exc)
+            {
+                return Redirect(@"Error");
             }
         }
 
         [HttpPost]
         public ActionResult Register(RegisterUser user)
         {
-            BLL.RegistrationAction registration = new RegistrationAction(){email = user.Email, fullName = user.FullName, password = user.Password, username = user.Login};
+            try
+            {
+                BLL.RegistrationAction registration = new RegistrationAction() { email = user.Email, fullName = user.FullName, password = user.Password, username = user.Login };
                 switch (registration.RegistrationCheck(manager))
                 {
                     case RegistrationStatus.RegistratedGraduate:
@@ -142,29 +152,50 @@ namespace ProgramingDeptMVC.Controllers
                         return Redirect(@"HomePage");
                         break;
                     case RegistrationStatus.Failed:
-                        return Redirect(@"Register");
+                        return Register("Помилка реєстрації");
                         break;
                     default:
-                        return Redirect(@"Register");
+                        return Register("Помилка реєстрації");
                 }
-            
+            }
+            catch (Exception exc)
+            {
+
+                return Redirect(@"Error");
+            }
+
+
         }
 
         [HttpPost]
         public ActionResult Changed(string Year)
         {
-            if (Year == "undefined")
+            try
             {
-                Year = "0";
+                if (Year == "undefined")
+                {
+                    Year = "0";
+                }
+                int yearId = Convert.ToInt32(Year);
+                List<ProjectDatabase.User> usersFromDb = manager.GetAllUsersByGraduateYear(yearId);
+                List<Models.User> users = new List<Models.User>();
+                foreach (User user in usersFromDb)
+                {
+                    users.Add(new Models.User() { FullName = user.FullName });
+                }
+                return Json(users, JsonRequestBehavior.AllowGet);
             }
-            int yearId = Convert.ToInt32(Year);
-            List<ProjectDatabase.User> usersFromDb = manager.GetAllUsersByGraduateYear(yearId);
-            List<Models.User> users = new List<Models.User>();
-            foreach (User user in usersFromDb)
+            catch (Exception exc)
             {
-                users.Add(new Models.User() { FullName = user.FullName });
+
+                return Redirect(@"Error");
             }
-            return Json(users, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ViewResult Error()
+        {
+            return View();
         }
 
     }
