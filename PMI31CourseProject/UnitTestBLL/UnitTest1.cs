@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BLL;
@@ -13,9 +13,15 @@ using System.Linq.Expressions;
 
 namespace BLLUnitTests
 {
+    /// <summary>
+    /// Test class for class RegistrationAction
+    /// </summary>
     [TestClass]
     public class UnitTestsForRegistrationAction
     {
+        /// <summary>
+        /// Test method CheckRoleIsGraduateForTrue
+        /// </summary>
         [TestMethod]
         public void TestMethodCheckRoleIsGraduateForTrue()
         {
@@ -24,6 +30,10 @@ namespace BLLUnitTests
             Assert.IsTrue(testAction.CheckRoleIsGraduate());
         }
 
+        /// <summary>
+        /// Test method CheckRoleIsGraduateForFalse 
+        /// for class RegistrationAction
+        /// </summary>
         [TestMethod]
         public void TestMethodCheckRoleIsGraduateForFalse()
         {
@@ -32,6 +42,10 @@ namespace BLLUnitTests
             Assert.IsFalse(testAction.CheckRoleIsGraduate());
         }
 
+        /// <summary>
+        /// Test method CheckRoleIsLecturerForTrue
+        /// for class RegistrationAction
+        /// </summary>
         [TestMethod]
         public void TestMethodCheckRoleIsLecturerForTrue()
         {
@@ -40,6 +54,10 @@ namespace BLLUnitTests
             Assert.IsTrue(testAction.CheckRoleIsLecturer());
         }
 
+        /// <summary>
+        /// Test method CheckRoleIsLectureForFalse
+        /// for class RegistrationAction
+        /// </summary>
         [TestMethod]
         public void TestMethodCheckRoleIsLectureForFalse()
         {
@@ -48,6 +66,10 @@ namespace BLLUnitTests
             Assert.IsFalse(testAction.CheckRoleIsLecturer());
         }
 
+        /// <summary>
+        /// Test method SetRoleForUserForLecturer
+        /// for class RegistrationAction
+        /// </summary>
         [TestMethod]
         public void TestMethodSetRoleForUserForLecturer()
         {
@@ -58,6 +80,10 @@ namespace BLLUnitTests
             Assert.AreEqual(roleName, "lecturer");
         }
 
+        /// <summary>
+        /// Test method SetRoleForUserForGraduate
+        /// for class RegistrationAction
+        /// </summary>
         [TestMethod]
         public void TestMethodSetRoleForUserForGraduate()
         {
@@ -68,6 +94,10 @@ namespace BLLUnitTests
             Assert.AreEqual(roleName, "graduate");
         }
 
+        /// <summary>
+        /// Test method TSetRegistrationStatusForGraduate
+        /// for class RegistrationAction
+        /// </summary>
         [TestMethod]
         public void TestMethodSetRegistrationStatusForGraduate()
         {
@@ -76,6 +106,10 @@ namespace BLLUnitTests
             Assert.AreEqual(testAction.SetRegistrationStatus(), RegistrationStatus.RegistratedGraduate);
         }
 
+        /// <summary>
+        /// Test method RegistrationCheckIfFailed
+        /// for class RegistrationAction
+        /// </summary>
         [TestMethod]
         public void TestMethodSetRegistrationStatusForLecturer()
         {
@@ -84,6 +118,10 @@ namespace BLLUnitTests
             Assert.AreEqual(testAction.SetRegistrationStatus(), RegistrationStatus.RegistratedLecturer);
         }
 
+        /// <summary>
+        /// Test method RegistrationCheckIfFailed
+        /// for class ForRegistrationAction
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodRegistrationCheckIfFailed()
         {
@@ -98,6 +136,10 @@ namespace BLLUnitTests
             Assert.AreEqual(status, RegistrationStatus.Failed);
         }
 
+        /// <summary>
+        /// Test method RegistrationCheckIfGraduate
+        /// for class RegistrationAction
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodRegistrationCheckIfGraduate()
         {
@@ -116,6 +158,10 @@ namespace BLLUnitTests
             Assert.AreEqual(status, RegistrationStatus.RegistratedGraduate);
         }
 
+        /// <summary>
+        /// Test method RegistrationCheckIfLecturer
+        /// for class RegistrationAction
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodRegistrationCheckIfLecturer()
         {
@@ -137,6 +183,7 @@ namespace BLLUnitTests
 
     /// <summary>
     /// Unit tests class for testing class LoginAction
+    /// for class RegistrationAction
     /// </summary>
     [TestClass]
     public class UnitTestsForLoginAction
@@ -214,6 +261,10 @@ namespace BLLUnitTests
             Assert.IsTrue(expectedAuthenticationStatus == gottenAuthenticationStatus);
         }
 
+        /// <summary>
+        /// Test method AuthenticationCheckExpectedAuthenticationStatusAdministrator
+        /// for class LoginAction
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodAuthenticationCheckExpectedAuthenticationStatusAdministrator()
         {
@@ -232,6 +283,10 @@ namespace BLLUnitTests
             Assert.IsTrue(expectedAuthenticationStatus == gottenAuthenticationStatus);
         }
 
+        /// <summary>
+        /// Test method AuthenticationCheckExpectedAuthenticationStatusLecturer
+        /// for class LoginAction
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodAuthenticationCheckExpectedAuthenticationStatusLecturer()
         {
@@ -250,6 +305,10 @@ namespace BLLUnitTests
             Assert.IsTrue(expectedAuthenticationStatus == gottenAuthenticationStatus);
         }
 
+        /// <summary>
+        /// Test method AuthenticationCheckExpectedAuthenticationStatusGraduate
+        /// for class LoginAction
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodAuthenticationCheckExpectedAuthenticationStatusGraduate()
         {
@@ -311,9 +370,17 @@ namespace BLLUnitTests
         }
     }
 
+    /// <summary>
+    /// Unit tests class for testing class ManageUsers
+    /// </summary>
     [TestClass]
     public class UnitTestsForManageUsers
     {
+
+        /// <summary>
+        /// Unit tests method TestMethodGetContacts
+        /// for class ManageUsers
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodGetContacts()
         {
@@ -326,11 +393,15 @@ namespace BLLUnitTests
             Assert.IsTrue(users == testUser.GetContacts());
         }
 
+        /// <summary>
+        /// Unit tests method AddUserIsTrue
+        /// for class ManageUsers
+        /// </summary>
         [TestMethod, Isolated]
-        public void TestMethodAddUser()
+        public void TestMethodAddUserIsTrue()
         {
-            User user = new User();
             UnitOfWork<User> unitOfWork = null;
+            User user = new User();
             UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>();
             Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
             Isolate.WhenCalled(() => fake.ContactRepository.Add(user)).WithExactArguments().IgnoreCall();
@@ -339,21 +410,10 @@ namespace BLLUnitTests
             Assert.IsTrue(testUser.AddUser(user));
         }
 
-        [TestMethod, Isolated]
-        public void TestMethodUpdateUser()
-        {
-            User user = new User();
-            user.Password = "qwerty";
-            string login = string.Empty;
-            UnitOfWork<User> unitOfWork = null;
-            UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>();
-            Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
-            Isolate.WhenCalled(() => fake.ContactRepository.GetById(login)).WithExactArguments().WillReturn(user);
-            Isolate.WhenCalled(() => fake.Save()).WithExactArguments().IgnoreCall();
-            ManageUsers testUser = new ManageUsers();
-            Assert.IsTrue(testUser.UpdateUser(user, login));
-        }
-
+        /// <summary>
+        /// Unit tests method AddUserIsNotNull
+        /// for class ManageUsers
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodAddUserIsNotNull()
         {
@@ -368,12 +428,35 @@ namespace BLLUnitTests
             Assert.IsNotNull(testUser);
         }
 
+        /// <summary>
+        /// Unit tests method UpdateUser
+        /// for class ManageUsers
+        /// </summary>
+        [TestMethod, Isolated]
+        public void TestMethodUpdateUser()
+        {
+            UnitOfWork<User> unitOfWork = null;
+            User user = new User();
+            user.Password = "qwerty";
+            string login = string.Empty;
+            UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>();
+            Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
+            Isolate.WhenCalled(() => fake.ContactRepository.GetById(login)).WithExactArguments().WillReturn(user);
+            Isolate.WhenCalled(() => fake.Save()).WithExactArguments().IgnoreCall();
+            ManageUsers testUser = new ManageUsers();
+            Assert.IsTrue(testUser.UpdateUser(user, login));
+        }
+
+        /// <summary>
+        /// Unit tests method DeleteUser
+        /// for class ManageUsers
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodDeleteUser()
         {
+            UnitOfWork<User> unitOfWork = null;
             User user = new User();
             string login = string.Empty;
-            UnitOfWork<User> unitOfWork = null;
             UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>();
             Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
             Isolate.WhenCalled(() => fake.ContactRepository.GetById(login)).WithExactArguments().WillReturn(user);
@@ -383,21 +466,10 @@ namespace BLLUnitTests
             Assert.IsTrue(testUser.DeleteUser(login));
         }
 
-        [TestMethod, Isolated]
-        public void TestMethodGetIdByLogin()
-        {
-            User user = new User();
-            string login = string.Empty;
-            UnitOfWork<User> unitOfWork = null;
-            Expression<Func<User, bool>> expr = someUser => someUser.Login == login;
-            UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>();
-            Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
-            Isolate.WhenCalled(() => fake.ContactRepository.GetMany(expr)).WithExactArguments().WillReturn(null);
-            ManageUsers testUser = new ManageUsers();
-            Assert.IsTrue(-1 == testUser.GetIdByLogin(login));
-        }
-
-
+        /// <summary>
+        /// Unit tests method DeleteUserIsTrue
+        /// for class ManageUsers
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodDeleteUserIsTrue()
         {
@@ -416,14 +488,36 @@ namespace BLLUnitTests
             Assert.IsTrue(-1==testUser.GetIdByLogin(login));
         }
 
+        /// <summary>
+        /// Unit tests method GetIdByLogin
+        /// for class ManageUsers
+        /// </summary>
+        [TestMethod, Isolated]
+        public void TestMethodGetIdByLogin()
+        {
+            UnitOfWork<User> unitOfWork = null;
+            User user = new User();
+            string login = string.Empty;
+            Expression<Func<User, bool>> expr = someUser => someUser.Login == login;
+            UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>();
+            Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
+            Isolate.WhenCalled(() => fake.ContactRepository.GetMany(expr)).WithExactArguments().WillReturn(null);
+            ManageUsers testUser = new ManageUsers();
+            Assert.IsTrue(-1 == testUser.GetIdByLogin(login));
+        }
+
+        /// <summary>
+        /// Unit tests method GetById
+        /// for class ManageUsers
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodGetById()
         {
+            UnitOfWork<User> unitOfWork = null;
             User user = new User();
             string login = string.Empty;
             user.Login = login;
             long id = 0;
-            UnitOfWork<User> unitOfWork = null;
             UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>();
             Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
             Isolate.WhenCalled(() => fake.ContactRepository.GetById(id)).WithExactArguments().WillReturn(user);
@@ -431,13 +525,17 @@ namespace BLLUnitTests
             Assert.IsTrue(user.Login == testUser.GetById(login).Login);
         }
 
+        /// <summary>
+        /// Unit tests method GetAllUsersByGraduateYear
+        /// for class ManageUsers
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodGetAllUsersByGraduateYear()
         {
+            UnitOfWork<User> unitOfWork = null;
             User user = new User();
             int graduationYear = 0;
             List<User> users = new List<User>();
-            UnitOfWork<User> unitOfWork = null;
             Expression<Func<User, bool>> expressionForGetAllUsersByGraduateYear = someUser => someUser.UserInfo.GraduateInfo.GraduationYear == graduationYear;
             UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>();
             Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
@@ -446,13 +544,17 @@ namespace BLLUnitTests
             Assert.IsTrue(0 == testUser.GetAllUsersByGraduateYear(graduationYear).Count);
         }
 
+        /// <summary>
+        /// Unit tests method GetAllUsersByEntranceYear
+        /// for class ManageUsers
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodGetAllUsersByEntranceYear()
         {
+            UnitOfWork<User> unitOfWork = null;
             User user = new User();
             int entranceYear = 0;
             List<User> users = new List<User>();
-            UnitOfWork<User> unitOfWork = null;
             Expression<Func<User, bool>> expressionForGetAllUsersByGraduateYear = someUser => someUser.UserInfo.GraduateInfo.EntranceYear == entranceYear;
             UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>();
             Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
@@ -461,13 +563,17 @@ namespace BLLUnitTests
             Assert.AreEqual(0, testUser.GetAllUsersByEntranceYear(entranceYear).Count);
         }
 
+        /// <summary>
+        /// Unit tests method GetAllUsersBySpeciality
+        /// for class ManageUsers
+        /// </summary>
         [TestMethod, Isolated]
         public void TestMethodGetAllUsersBySpeciality()
         {
+            UnitOfWork<User> unitOfWork = null;
             User user = new User();
             string speciality = string.Empty;
             List<User> users = new List<User>();
-            UnitOfWork<User> unitOfWork = null;
             Expression<Func<User, bool>> expressionForGetAllUsersByGraduateYear = someUser => someUser.UserInfo.GraduateInfo.Speciality == speciality;
             UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>();
             Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
@@ -478,6 +584,9 @@ namespace BLLUnitTests
 
     }
 
+    /// <summary>
+    /// Unit tests class for testing class Security
+    /// </summary>
     [TestClass]
     public class UnitTestsForSecurity
     {
