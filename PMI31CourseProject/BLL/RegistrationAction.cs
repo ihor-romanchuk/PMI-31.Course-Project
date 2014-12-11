@@ -120,7 +120,7 @@ namespace BLL
         {
             User regUser;
             regUser = users.GetById(username);
-            if (regUser == null)
+            if (regUser != null)
             {
                 return RegistrationStatus.Failed;
             }

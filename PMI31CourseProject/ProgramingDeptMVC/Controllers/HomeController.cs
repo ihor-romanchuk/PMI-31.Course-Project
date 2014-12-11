@@ -113,13 +113,13 @@ namespace ProgramingDeptMVC.Controllers
                     return Redirect(@"HomePage");
                     break;
                 case AuthenticationStatus.NoUser:
-                    return Redirect(@"#");
+                    return Redirect(@"SignIn");
                     break;
                 case AuthenticationStatus.WrongPassword:
-                    return Redirect(@"#");
+                    return Redirect(@"SignIn");
                     break;
                 default:
-                    return Redirect(@"#");
+                    return Redirect(@"SignIn");
 
             }
         }
@@ -136,10 +136,10 @@ namespace ProgramingDeptMVC.Controllers
                         return Redirect(@"HomePage");
                         break;
                     case RegistrationStatus.Failed:
-                        return Redirect(@"#");
+                        return Redirect(@"Register");
                         break;
                     default:
-                        return Redirect(@"#");
+                        return Redirect(@"Register");
                 }
             
         }
