@@ -82,6 +82,13 @@ namespace BLLUnitTests
             Assert.AreEqual(testAction.SetRegistrationStatus(), RegistrationStatus.RegistratedLecturer);
         }
 
+        [TestMethod]
+        public void TestMethodDefultConstructorForRegistrationAction()
+        {
+            RegistrationAction testAction = new RegistrationAction();
+            Assert.AreEqual(testAction.role, Role.Graduate);
+        }
+
         [TestMethod, Isolated]
         public void TestMethodRegistrationCheckIfFailed()
         {
@@ -114,22 +121,6 @@ namespace BLLUnitTests
             Assert.AreEqual(status, RegistrationStatus.RegistratedGraduate);
         }
 
-        [TestMethod, Isolated]
-        public void TestMethodAddUser()
-        {
-            User user = new User();
-            using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
-            {
-                using (UnitOfWork<User> fake = Isolate.Fake.Instance<UnitOfWork<User>>())
-                {
-                    Isolate.Swap.AllInstances<UnitOfWork<User>>().With(fake);
-                    Isolate.WhenCalled(() => fake.ContactRepository.Add(user)).WithExactArguments().IgnoreCall();
-                    Isolate.WhenCalled(() => fake.Save()).WithExactArguments().IgnoreCall();
-                    ManageUsers testUser = new ManageUsers();
-                    Assert.IsTrue(testUser.AddUser(user));
-                }
-            }
-        }
         [TestMethod, Isolated]
         public void TestMethodRegistrationCheckIfLecturer()
         {
