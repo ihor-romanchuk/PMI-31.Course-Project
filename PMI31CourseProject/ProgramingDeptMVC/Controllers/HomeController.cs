@@ -20,9 +20,11 @@ namespace ProgramingDeptMVC.Controllers
         //
         // GET: /Home/
         ManageUsers manager = new ManageUsers();
+        private string signInMassage = string.Empty;
         public ViewResult SignIn()
         {
             ViewBag.Title = "Головна";
+            @ViewBag.Massage = this.signInMassage;
             return View();
         }
         public ViewResult Register()
@@ -113,13 +115,16 @@ namespace ProgramingDeptMVC.Controllers
                     return Redirect(@"HomePage");
                     break;
                 case AuthenticationStatus.NoUser:
-                    return Redirect(@"SignIn");
+                   this.signInMassage = "Немає користувача";
+                    return Redirect("SignIn");
                     break;
                 case AuthenticationStatus.WrongPassword:
-                    return Redirect(@"SignIn");
+                    this.signInMassage = "Невірний пароль";
+                    return Redirect("SignIn");
                     break;
                 default:
-                    return Redirect(@"SignIn");
+                    this.signInMassage = "Помилка реєстрації";
+                    return Redirect("SignIn");
 
             }
         }

@@ -1,12 +1,11 @@
-﻿
-    <!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   
+
     <title>Реєстрація</title>
 
 
@@ -27,103 +26,107 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" src = "/Content/js/javaScript.js"></script>
+    <script type="text/javascript" src="/Content/js/javaScript.js"></script>
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-    <link rel="stylesheet" href="~/Content/css/bootstrapValidator.min.css"/>
+    <link rel="stylesheet" href="~/Content/css/bootstrapValidator.min.css" />
     <script type="text/javascript" src="/Content/js/bootstrapValidator.min.js"></script>
 
 </head>
 
 <body class="registration">
 
- <div id="signupbox" style="display:block; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-     <div class="panel panel-info">
-         <div class="panel-heading">
-             <div class="panel-title">Зареєструватися</div>
-             <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="SignIn" onclick="$('#signupbox').hide(); $('#loginbox').show()">Увійти</a></div>
-         </div>  
-         <div class="panel-body" >
-             <form class="form-horizontal registerForm" method="post" action="">
-                                
-                 <div id="signupalert" style="display:none" class="alert alert-danger">
-                     <p>Error:</p>
-                     <span></span>
-                 </div>
-                                    
-                                
-                                  
-                 <div class="form-group">
-                     <label for="email" class="col-md-3 control-label">Email</label>
+    <div id="signupbox" style="display: block; margin-top: 50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Зареєструватися</div>
+                <div style="float: right; font-size: 85%; position: relative; top: -10px"><a id="signinlink" href="SignIn" onclick="$('#signupbox').hide(); $('#loginbox').show()">Увійти</a></div>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal registerForm" method="post" action="">
 
-                     <div class="col-md-9">
-                         <input type="text" class="form-control" name="email" placeholder="Email адреса">
-                     </div>
-
-                 </div>
-
-    
-
-                                    
-                 <div class="form-group">
-                     <label for="username" class="col-md-3 control-label">Логін</label>
-                     <div class="col-md-9">
-                         <input type="text" class="form-control" name="username" placeholder="Логін">
-                     </div>
-                 </div>
-                    
-                 <div class="form-group">
-                     <label for="password" class="col-md-3 control-label">Пароль</label>
-                     <div class="col-md-9">
-                         <input type="password" class="form-control" name="password" placeholder="Пароль">
-                     </div>
-                 </div>
-
-                 <div class="form-group">
-                     <label for="password" class="col-md-3 control-label">Підтвердження паролю</label>
-                     <div class="col-md-9">
-                         <input type="password" class="form-control" name="secondPassword" placeholder="Пароль">
-                     </div>
-                 </div>
-
-                 <div class="form-group">
-                     <!-- Button -->                                        
-                     <div class="col-md-offset-3 col-md-9">
-                         <input id="btn-signup" type="submit" class="btn btn-info" value="Зареєструватися"/>
-                                        
-                     </div>
-                 </div>
-                                
-                 <div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">
-                                    
-                     <div class="col-md-offset-3 col-md-9">
-                         <button id="btn-fbsignup" type="button" class="btn btn-primary"><i class="icon-facebook"></i>   Зареєструватися з Facebook</button>
-                     </div>  
-                                                              
-                                        
-                 </div>
-
-             </form>
-                  <div style="margin-top:10px" class="form-group">
-                                    <!-- Button -->
-
-                                    <div class="col-sm-12 controls">
-                                      <a id="btn-fblogin" href="Index/#about" class="btn btn-primary">На головну</a>
-
-                                    </div>
-                                </div>  
-                        <div>
-
-         </div>
-     </div>
-
-                        @RenderBody()
+                    <div id="signupalert" style="display: none" class="alert alert-danger">
+                        <p>Error:</p>
+                        <span></span>
                     </div>
-    <div>
-    </div>
-   
 
-       </div>
+                    <div class="form-group">
+                        <label for="username" class="col-md-3 control-label">Празвище, ім'я, по-батькові</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="fullname" placeholder="П.І.П.">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="col-md-3 control-label">Email</label>
+
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="email" placeholder="Email адреса">
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <label for="username" class="col-md-3 control-label">Логін</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="username" placeholder="Логін">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="col-md-3 control-label">Пароль</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" name="password" placeholder="Пароль">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="col-md-3 control-label">Підтвердження паролю</label>
+                        <div class="col-md-9">
+                            <input type="password" class="form-control" name="secondPassword" placeholder="Пароль">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Button -->
+                        <div class="col-md-offset-3 col-md-9">
+                            <input id="btn-signup" type="submit" class="btn btn-info" value="Зареєструватися" />
+
+                        </div>
+                    </div>
+
+                    <div style="border-top: 1px solid #999; padding-top: 20px" class="form-group">
+
+                        <div class="col-md-offset-3 col-md-9">
+                            <button id="btn-fbsignup" type="button" class="btn btn-primary"><i class="icon-facebook"></i>Зареєструватися з Facebook</button>
+                        </div>
+
+
+                    </div>
+
+                </form>
+                <div style="margin-top: 10px" class="form-group">
+                    <!-- Button -->
+
+                    <div class="col-sm-12 controls">
+                        <a id="btn-fblogin" href="Index/#about" class="btn btn-primary">На головну</a>
+
+                    </div>
+                </div>
+                <div>
+                </div>
+            </div>
+
+            @RenderBody()
+        </div>
+        <div>
+        </div>
+
+
+    </div>
 </body>
 
 </html>
