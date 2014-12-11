@@ -50,7 +50,9 @@ namespace BLL
         /// <returns>AuthenticationStatus for user</returns>
         public AuthenticationStatus GetAuthenticationStatusForUser(User user)
         {
-            if (user.Password != Security.HashPassword(this.UserPassword))
+            string temp1 = user.Password;
+            string temp2 = Security.HashPassword(this.UserPassword);
+            if (user.Password.CompareTo( Security.HashPassword(this.UserPassword)) != 0)
             {
                 return AuthenticationStatus.WrongPassword;
             }
