@@ -100,9 +100,9 @@ namespace ProgramingDeptMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignIn(BLL.LoginAction resultOfLogin)
+        public ActionResult SignIn(Models.LoginUser userLoginData)
         {
-
+            BLL.LoginAction resultOfLogin = new LoginAction(){UserLogin = userLoginData.Username, UserPassword = userLoginData.Password};
             switch (resultOfLogin.AuthenticationCheck(manager))
             {
                 case AuthenticationStatus.Graduate:
