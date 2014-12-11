@@ -51,11 +51,11 @@ namespace BLL
         /// <param name="user">User to upadate</param>
         /// <param name="login">Login of user.</param>
         /// <returns></returns>
-        public bool UpdateUser(User user, string login)
+        public bool UpdateUser(User user, string id)
         {
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
-                var contactEntity = unitOfWork.ContactRepository.GetById(GetIdByLogin(login));
+                var contactEntity = unitOfWork.ContactRepository.GetById(id);
                 contactEntity.Login = user.Login;
                 contactEntity.Password = Security.HashPassword(user.Password);
                 contactEntity.Role = user.Role;
@@ -71,11 +71,11 @@ namespace BLL
         /// </summary>
         /// <param name="login">Login of user to delete</param>
         /// <returns>Boolean value, which means if user was deleted.</returns>
-        public bool DeleteUser(string login)
+        public bool DeleteUser(string id)
         {
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
-                User user = unitOfWork.ContactRepository.GetById(GetIdByLogin(login));
+                User user = unitOfWork.ContactRepository.GetById(id);
                 unitOfWork.ContactRepository.Delete(user);
                 unitOfWork.Save();
             }
@@ -87,17 +87,23 @@ namespace BLL
         /// </summary>
         /// <param name="login">Login for searching.</param>
         /// <returns>Id of user.</returns>
-        private int GetIdByLogin(string login)
+        public int GetIdByLogin(string login)
         {
-            int id;
+            int Id;
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
                 Expression<Func<User, bool>> expr = G => G.Login == login;
-                var temp = unitOfWork.ContactRepository.GetMany(expr).ToList();
-                if(temp.Count == 0) id = -1; else
-                    id = temp[0].Id;
+                var listOfUsers = unitOfWork.ContactRepository.GetMany(expr).ToList();
+                if (listOfUsers.Count == 0)
+                {
+                    Id = -1;
+                }
+                else
+                {
+                    Id = listOfUsers[0].Id;
+                }
             }
-            return id;
+            return Id;
         }
         
         /// <summary>
@@ -125,11 +131,41 @@ namespace BLL
             List<User> users = new List<User>();
             using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
             {
-                Expression<Func<User, bool>> expr = G => G.UserInfo.GraduateInfo.GraduationYear == graduationYear;
-                users = unitOfWork.ContactRepository.GetMany(expr).ToList<User>();
+                Expression<Func<User, bool>> expressionForGetAllUsersByGraduateYear = user => user.UserInfo.GraduateInfo.GraduationYear == graduationYear;
+                users = unitOfWork.ContactRepository.GetMany(expressionForGetAllUsersByGraduateYear).ToList<User>();
             }
-            List<User> a = new List<User>();
-            a.Add(users[0]);
+            return users;
+        }
+
+        /// <summary>
+        /// Get list of all users by entrance year
+        /// </summary>
+        /// <param name="entranceYear">users entrance year</param>
+        /// <returns>list of all users by entrance year</returns>
+        public List<User> GetAllUsersByEntranceYear(int entranceYear)
+        {
+            List<User> users = new List<User>();
+            using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
+            {
+                Expression<Func<User, bool>> expressionForGetAllUsersByEntranceYear = user => user.UserInfo.GraduateInfo.EntranceYear == entranceYear;
+                users = unitOfWork.ContactRepository.GetMany(expressionForGetAllUsersByEntranceYear).ToList<User>();
+            }
+            return users;
+        }
+
+        /// <summary>
+        /// Get list of all users by speciality
+        /// </summary>
+        /// <param name="entranceYear">users speciality</param>
+        /// <returns>list of all users by speciality</returns>
+        public List<User> GetAllUsersBySpeciality(string speciality)
+        {
+            List<User> users = new List<User>();
+            using (UnitOfWork<User> unitOfWork = new UnitOfWork<User>())
+            {
+                Expression<Func<User, bool>> expressionForGetAllUsersBySpeciality = user => user.UserInfo.GraduateInfo.Speciality == speciality;
+                users = unitOfWork.ContactRepository.GetMany(expressionForGetAllUsersBySpeciality).ToList<User>();
+            }
             return users;
         }
     }

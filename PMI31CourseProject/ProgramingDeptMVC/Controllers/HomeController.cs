@@ -169,20 +169,7 @@ namespace ProgramingDeptMVC.Controllers
         public ActionResult Changed(string Year)
         {
             int yearId = Convert.ToInt32(Year);
-            List<ProjectDatabase.User> usersFromDb = manager.GetAllUsersByGraduateYear(yearId);
-            List<Models.User> modelUsers = new List<Models.User>();
-            if (usersFromDb.Count > 0)
-            {
-                foreach (ProjectDatabase.User user in usersFromDb)
-                {
-                    modelUsers.Add(new Models.User() {FullName = user.FullName});
-                }
-            }
-            else
-            {
-                modelUsers.Add(new Models.User() { FullName = string.Format("Немає даних за {0} роком", Year)});
-            }
-            return Json(modelUsers, JsonRequestBehavior.AllowGet);
+            return Json(manager.GetAllUsersByGraduateYear(yearId), JsonRequestBehavior.AllowGet);
         }
 
     }
