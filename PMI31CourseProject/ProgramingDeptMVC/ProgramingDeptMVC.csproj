@@ -61,12 +61,18 @@
     <Reference Include="System.Data">
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Drawing">
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
+    <Reference Include="System.Runtime.Serialization">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData">
       <Private>True</Private>
     </Reference>
@@ -187,7 +193,6 @@
     <Content Include="Content\img\and.jpg" />
     <Content Include="Content\img\dev.jpg" />
     <Content Include="Content\img\didi.JPG" />
-    <Content Include="Content\img\intro-pic.jpg" />
     <Content Include="Content\img\kcl.jpg" />
     <Content Include="Content\img\kenny.JPG" />
     <Content Include="Content\img\ls.jpg" />
@@ -217,12 +222,7 @@
     <Content Include="Content\font-awesome-4.1.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\back.gif" />
-    <Content Include="Content\img\background.jpg" />
     <Content Include="Content\img\bg.JPG" />
-    <Content Include="Content\img\portfolio-1.jpg" />
-    <Content Include="Content\img\portfolio-2.jpg" />
-    <Content Include="Content\img\portfolio-3.jpg" />
-    <Content Include="Content\img\portfolio-4.jpg" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\jquery-1.11.0.js" />
