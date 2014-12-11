@@ -18,7 +18,7 @@ namespace DAL
     public class UnitOfWork<T>:IDisposable where T : class
     {
         /// <summary>
-        /// Enitity of database
+        /// Entity of database
         /// </summary>
         private Course_ProjectEntities _context;
 
@@ -36,7 +36,7 @@ namespace DAL
         }
 
         /// <summary>
-        /// Gets or sets contactRepository
+        /// Gets contactRepository
         /// </summary>
         public ConnectRepository<T> ContactRepository
         {
@@ -60,7 +60,7 @@ namespace DAL
         }
 
         /// <summary>
-        /// is diposed
+        /// is disposed
         /// </summary>
         private bool _disposed = false;
 

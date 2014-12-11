@@ -14,7 +14,7 @@ namespace PMI31CourseProject.Repository
     /// <summary>
     /// class Repository
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Random class.</typeparam>
     public class Repository<T> where T: class
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace PMI31CourseProject.Repository
         }
 
         /// <summary>
-        /// rempve from database
+        /// remove from database
         /// </summary>
         /// <param name="entity">element to remove</param>
         public virtual void Delete(T entity)
@@ -56,7 +56,7 @@ namespace PMI31CourseProject.Repository
         }
 
         /// <summary>
-        /// get eletemt by id
+        /// get element by id
         /// </summary>
         /// <param name="id">id of element</param>
         /// <returns>result element</returns>
@@ -66,7 +66,7 @@ namespace PMI31CourseProject.Repository
         }
 
         /// <summary>
-        /// get eletemt by id
+        /// get element by id
         /// </summary>
         /// <param name="id">id of element</param>
         /// <returns>result element</returns>
