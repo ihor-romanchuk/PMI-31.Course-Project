@@ -37,6 +37,14 @@ namespace BLL
         /// </summary>
         public Role role { get; set; }
 
+        public RegistrationAction()
+        {
+            username = "";
+            password = "";
+            email = "";
+            fullName = "";
+            role = Role.Graduate;
+        }
         /// <summary>
         /// check role is graduate
         /// </summary>
@@ -120,7 +128,7 @@ namespace BLL
         {
             User regUser;
             regUser = users.GetById(username);
-            if (regUser != null)
+            if (regUser == null)
             {
                 return RegistrationStatus.Failed;
             }

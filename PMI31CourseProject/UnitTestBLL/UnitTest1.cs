@@ -7,6 +7,7 @@ using PMI31CourseProject.Repository;
 using ProjectDatabase;
 using TypeMock;
 using TypeMock.ArrangeActAssert;
+using DAL;
 
 namespace BLLUnitTests
 {
@@ -87,7 +88,7 @@ namespace BLLUnitTests
             ManageUsers testManageUser = new ManageUsers();
             RegistrationAction testAction = new RegistrationAction();
             testAction.username = "login";
-            User user = new User();
+            User user = null;
             ManageUsers fakeManageUser = Isolate.Fake.Instance<ManageUsers>();
             Isolate.Swap.AllInstances<ManageUsers>().With(fakeManageUser);
             Isolate.WhenCalled(() => fakeManageUser.GetById("login")).WithExactArguments().WillReturn(user);
@@ -337,5 +338,20 @@ namespace BLLUnitTests
             string password2 = "Password";
             Assert.AreNotEqual(Security.HashPassword(password1), Security.HashPassword(password2));
         }
+    }
+
+    [TestClass]
+    public class TestManageUsers
+    {
+        //[TestMethod]
+        //public void TestMethodGetContacts()
+        //{
+        //    IEnumerable<User> users ;
+        //    UnitOfWork<User> unitOfWork = new UnitOfWork<User>();
+        //    Repository<User> fake = Isolate.Fake.Instance<Repository<User>>();
+        //    Isolate.Swap.AllInstances < Repository<User>>().With(fake);
+        //    Isolate.WhenCalled(() => fake.GetAll()).WithExactArguments().WillReturn(users);
+        //}
+
     }
 }
