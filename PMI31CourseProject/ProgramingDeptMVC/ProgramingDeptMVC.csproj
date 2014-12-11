@@ -319,24 +319,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\_LayoutAboutM.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_LayoutContactM.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_LayoutPersonalM.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\PersonalM.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\AboutM.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\ContactM.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\_LayoutIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>

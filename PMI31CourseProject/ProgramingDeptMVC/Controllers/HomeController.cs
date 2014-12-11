@@ -11,6 +11,7 @@ using DAL;
 using BLL;
 using ProgramingDeptMVC.Models;
 using ProjectDatabase;
+using User = ProjectDatabase.User;
 
 namespace ProgramingDeptMVC.Controllers
 {
@@ -42,22 +43,6 @@ namespace ProgramingDeptMVC.Controllers
         }
 
         public ViewResult Contact()
-        {
-            return View();
-        }
-
-        public ViewResult PersonalM()
-        {
-            ViewBag.Title = "Маркіян Фостяк";
-            return View();
-        }
-
-        public ViewResult AboutM()
-        {
-            return View();
-        }
-
-        public ViewResult ContactM()
         {
             return View();
         }
@@ -116,34 +101,32 @@ namespace ProgramingDeptMVC.Controllers
         public ActionResult SignIn(BLL.LoginAction resultOfLogin)
         {
 
-                switch (resultOfLogin.AuthenticationCheck(manager))
-                {
-                    case AuthenticationStatus.Graduate:
-                        return Redirect(@"HomePage");
-                        break;
-                    case AuthenticationStatus.Lecturer:
-                        return Redirect(@"HomePage");
-                        break;
-                    case AuthenticationStatus.Administrator:
-                        return Redirect(@"HomePage");
-                        break;
-                    case AuthenticationStatus.NoUser:
-                        return Redirect(@"#");
-                        break;
-                    case AuthenticationStatus.WrongPassword:
-                        return Redirect(@"#");
-                        break;
-                    default:
-                        return Redirect(@"#");
+            switch (resultOfLogin.AuthenticationCheck(manager))
+            {
+                case AuthenticationStatus.Graduate:
+                    return Redirect(@"HomePage");
+                    break;
+                case AuthenticationStatus.Lecturer:
+                    return Redirect(@"HomePage");
+                    break;
+                case AuthenticationStatus.Administrator:
+                    return Redirect(@"HomePage");
+                    break;
+                case AuthenticationStatus.NoUser:
+                    return Redirect(@"#");
+                    break;
+                case AuthenticationStatus.WrongPassword:
+                    return Redirect(@"#");
+                    break;
+                default:
+                    return Redirect(@"#");
 
-                }
+            }
         }
 
         [HttpPost]
         public ActionResult Register(BLL.RegistrationAction registration)
         {
-            try
-            {
                 switch (registration.RegistrationCheck(manager))
                 {
                     case RegistrationStatus.RegistratedGraduate:
@@ -158,18 +141,20 @@ namespace ProgramingDeptMVC.Controllers
                     default:
                         return Redirect(@"#");
                 }
-            }
-            catch (Exception exc)
-            {
-                return Redirect(@"Register");
-            }
+            
         }
 
         [HttpPost]
         public ActionResult Changed(string Year)
         {
             int yearId = Convert.ToInt32(Year);
-            return Json(manager.GetAllUsersByGraduateYear(yearId), JsonRequestBehavior.AllowGet);
+            List<ProjectDatabase.User> usersFromDb = manager.GetAllUsersByGraduateYear(yearId);
+            List<Models.User> users = new List<Models.User>();
+            foreach (User user in usersFromDb)
+            {
+                users.Add(new Models.User() { FullName = user.FullName });
+            }
+            return Json(users, JsonRequestBehavior.AllowGet);
         }
 
     }
