@@ -10,7 +10,7 @@ namespace BLL
     /// </summary>
     public enum RegistrationStatus
     {
-        RegistratedGraduate, RegistratedLecturer, Failed
+        RegistratedGraduate, RegistratedLecturer, Failed, FullNameRegistred, LoginRegistread, NonFullName
     }
 
      /// <summary>
