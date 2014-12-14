@@ -132,7 +132,7 @@ namespace BLL
             {
                 if (regUser.IsRegistered == true)
                 {
-
+                    return RegistrationStatus.FullNameRegistred;
                 }
                 else
                 {

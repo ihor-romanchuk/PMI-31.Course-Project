@@ -151,6 +151,15 @@ namespace ProgramingDeptMVC.Controllers
                     case RegistrationStatus.RegistratedLecturer:
                         return Redirect(@"HomePage");
                         break;
+                    case RegistrationStatus.FullNameRegistred:
+                        return Register(string.Format("Користувач '{0}' вже зареєстрований", user.FullName));
+                        break;
+                    case RegistrationStatus.LoginRegistread:
+                        return Register(string.Format("Логін '{0}' вже зареєстрований", user.Login));
+                        break;
+                    case RegistrationStatus.NonFullName:
+                        return Register(string.Format("Випускник '{0}' не внесений в базу даних", user.Login));
+                        break;
                     case RegistrationStatus.Failed:
                         return Register("Помилка реєстрації");
                         break;
