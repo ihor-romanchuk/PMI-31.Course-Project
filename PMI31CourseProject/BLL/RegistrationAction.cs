@@ -124,29 +124,22 @@ namespace BLL
         {
             User regUser;
             regUser = users.GetByFullName(fullName);
-            if (regUser == null)
+            if (regUser == null || regUser.IsRegistered == true)
             {
                 return RegistrationStatus.Failed;
             }
             else
             {
-                if (regUser.IsRegistered == false)
-                {
-                    regUser.Login = username;
-                    regUser.Password = Security.HashPassword(password);
-                    regUser.FullName = fullName;
-                    string roleName = string.Empty;
-                    this.SetRoleForUser(ref roleName);
-                    regUser.Role = roleName;
-                    regUser.IsRegistered = true;
-                    regUser.UserInfo = new UserInfo();
-                    users.UpdateUser(regUser, regUser.FullName);
-                    return SetRegistrationStatus();
-                }
-                else
-                {
-                    return RegistrationStatus.Failed;
-                }
+                regUser.Login = username;
+                regUser.Password = Security.HashPassword(password);
+                regUser.FullName = fullName;
+                string roleName = string.Empty;
+                this.SetRoleForUser(ref roleName);
+                regUser.Role = roleName;
+                regUser.IsRegistered = true;
+                regUser.UserInfo = new UserInfo();
+                users.UpdateUser(regUser, regUser.FullName);
+                return SetRegistrationStatus();
             }
         }
     }
